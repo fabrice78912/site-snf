@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9InNiIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIxMDAlIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzVBQUJGNSIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwRDNBN0EiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9InNzIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIxMDAlIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI0UwRThGNCIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM1QTZFOEEiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9InN0IiB4MT0iMCUiIHkxPSIwJSIgeDI9IjAlIiB5Mj0iMTAwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiM2QUFBRTAiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjMUE0RjlBIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogIDwvZGVmcz4KICA8cG9seWdvbiBwb2ludHM9IjQsNCAyOCw0IDE2LDYwIiBmaWxsPSJ1cmwoI3NiKSIvPgogIDxwb2x5Z29uIHBvaW50cz0iMTIsMTYgMjgsNCAyMCw0NiIgZmlsbD0idXJsKCNzcykiIG9wYWNpdHk9IjAuODUiLz4KICA8dGV4dCB4PSIzMiIgeT0iNDQiIGZvbnQtZmFtaWx5PSJBcmlhbCBCbGFjayxzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iOTAwIiBmb250LXNpemU9IjI2IiBmaWxsPSJ1cmwoI3N0KSIgbGV0dGVyLXNwYWNpbmc9Ii0xIj5TTkY8L3RleHQ+Cjwvc3ZnPg=="/>
 <title>Solutions Numériques Foko | Digital Solutions</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -26,7 +27,12 @@
   body { background: var(--c1); color: var(--white); font-family: 'DM Sans', sans-serif; line-height: 1.7; overflow-x: hidden; }
   h1,h2,h3,h4 { font-family: 'Syne', sans-serif; line-height: 1.2; }
 
-  /* NAV */
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--c1); }
+  ::-webkit-scrollbar-thumb { background: rgba(0,212,180,0.3); border-radius: 3px; }
+
+  /* ── NAV ── */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
     height: var(--nav-h);
@@ -37,22 +43,20 @@
     border-bottom: 1px solid rgba(0,212,180,0.12);
     transition: background 0.3s;
   }
-  .logo {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800; font-size: 1.4rem;
-    letter-spacing: -0.02em;
-    display: flex; align-items: center; gap: 8px;
-    text-decoration: none; color: var(--white);
-  }
-  .nav-links {
-    display: flex; align-items: center; gap: 2rem; list-style: none;
-  }
+  .logo { display: flex; align-items: center; gap: 0; text-decoration: none; }
+  .snf-logo-svg { height: 74px; width: auto; display: block; }
+  .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
   .nav-links a {
     text-decoration: none; color: var(--muted);
     font-size: 0.9rem; font-weight: 500; letter-spacing: 0.02em;
-    transition: color 0.2s;
+    transition: color 0.2s; position: relative; padding-bottom: 2px;
+  }
+  .nav-links a::after {
+    content: ''; position: absolute; bottom: 0; left: 0;
+    width: 0; height: 1px; background: var(--accent); transition: width 0.25s;
   }
   .nav-links a:hover { color: var(--white); }
+  .nav-links a:hover::after { width: 100%; }
   .lang-toggle {
     display: flex; align-items: center; gap: 4px;
     background: var(--card-bg);
@@ -67,21 +71,51 @@
   }
   .lang-btn.active { background: var(--accent); color: #0B1120; }
   .nav-cta {
-    background: transparent;
-    border: 1px solid var(--accent);
-    color: var(--accent);
-    padding: 8px 20px; border-radius: 6px;
-    font-size: 0.85rem; font-weight: 600;
+    background: transparent; border: 1px solid var(--accent); color: var(--accent);
+    padding: 8px 20px; border-radius: 6px; font-size: 0.85rem; font-weight: 600;
     cursor: pointer; transition: all 0.2s;
-    font-family: 'DM Sans', sans-serif; text-decoration: none;
-    white-space: nowrap;
+    font-family: 'DM Sans', sans-serif; text-decoration: none; white-space: nowrap;
   }
   .nav-cta:hover { background: var(--accent); color: #0B1120; }
 
-  /* SNF Logo */
-  .snf-logo-svg { height: 74px; width: auto; display: block; }
+  /* ── MOBILE MENU ── */
+  .hamburger {
+    display: none; flex-direction: column; gap: 5px;
+    cursor: pointer; padding: 4px; background: none; border: none;
+  }
+  .hamburger span {
+    display: block; width: 24px; height: 2px;
+    background: var(--white); border-radius: 2px;
+    transition: all 0.3s;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-  /* HERO */
+  .mobile-menu {
+    display: none; position: fixed; top: var(--nav-h); left: 0; right: 0;
+    background: rgba(11,17,32,0.98); backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(0,212,180,0.15);
+    padding: 1.5rem 5%; z-index: 999;
+    flex-direction: column; gap: 0;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    text-decoration: none; color: var(--muted);
+    font-size: 1rem; font-weight: 500; padding: 1rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    transition: color 0.2s;
+  }
+  .mobile-menu a:last-child { border-bottom: none; }
+  .mobile-menu a:hover { color: var(--accent); }
+  .mobile-menu .mobile-cta {
+    margin-top: 1rem; padding: 12px; text-align: center;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    color: #0B1120; border-radius: 8px; font-weight: 700;
+    font-family: 'Syne', sans-serif;
+  }
+
+  /* ── HERO ── */
   #hero {
     min-height: 100vh; padding-top: var(--nav-h);
     display: flex; flex-direction: column; justify-content: center;
@@ -103,30 +137,27 @@
     background-size: 60px 60px;
     mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent);
   }
-
-  /* floating particles */
   .particle {
-    position:absolute; border-radius:50%; pointer-events:none; z-index:0;
-    animation:float 8s ease-in-out infinite;
+    position: absolute; border-radius: 50%; pointer-events: none; z-index: 0;
+    animation: float 8s ease-in-out infinite;
   }
   .p1{width:4px;height:4px;background:var(--accent);opacity:0.6;top:20%;left:15%;animation-delay:0s;}
   .p2{width:3px;height:3px;background:var(--accent2);opacity:0.5;top:60%;left:80%;animation-delay:2s;}
   .p3{width:5px;height:5px;background:#7B5CF5;opacity:0.4;top:40%;left:60%;animation-delay:4s;}
   .p4{width:3px;height:3px;background:var(--accent);opacity:0.5;top:75%;left:30%;animation-delay:1s;}
   .p5{width:4px;height:4px;background:var(--accent2);opacity:0.4;top:15%;left:70%;animation-delay:3s;}
-  @keyframes float{
+  @keyframes float {
     0%,100%{transform:translateY(0) translateX(0)}
     33%{transform:translateY(-18px) translateX(8px)}
     66%{transform:translateY(8px) translateX(-10px)}
   }
-  .hero-content { position: relative; z-index: 1; max-width: 780px; }
 
+  .hero-content { position: relative; z-index: 1; max-width: 780px; }
   h1.hero-title {
-    font-size: clamp(1.5rem, 4vw, 3.2rem);
+    font-size: clamp(1.8rem, 5vw, 3.2rem);
     font-weight: 800; letter-spacing: -0.03em;
-    line-height: 1.05; margin-bottom: 1.5rem; margin-top: 3rem;
-    animation: fadeUp 0.6s 0.1s ease both;
-    word-break: break-word;
+    line-height: 1.08; margin-bottom: 1.5rem; margin-top: 3rem;
+    animation: fadeUp 0.6s 0.1s ease both; word-break: break-word;
   }
   .hero-title .gradient-text {
     background: linear-gradient(135deg, var(--accent), var(--accent2));
@@ -134,7 +165,7 @@
     background-clip: text;
   }
   .hero-sub {
-    font-size: clamp(0.9rem, 2vw, 1.1rem); color: var(--muted); max-width: 560px;
+    font-size: clamp(0.92rem, 2vw, 1.05rem); color: var(--muted); max-width: 560px;
     margin-bottom: 2.5rem; font-weight: 300; line-height: 1.8;
     animation: fadeUp 0.6s 0.2s ease both;
   }
@@ -144,7 +175,7 @@
   }
   .btn-primary {
     background: linear-gradient(135deg, var(--accent), var(--accent2));
-    color: #0B1120; padding: 12px 24px;
+    color: #0B1120; padding: 13px 28px;
     border-radius: 8px; font-weight: 700;
     font-size: clamp(0.85rem, 2vw, 0.95rem); text-decoration: none;
     transition: transform 0.2s, box-shadow 0.2s;
@@ -155,7 +186,7 @@
   .btn-outline {
     background: transparent; color: var(--white);
     border: 1px solid rgba(255,255,255,0.25);
-    padding: 12px 24px; border-radius: 8px;
+    padding: 13px 28px; border-radius: 8px;
     font-weight: 500; font-size: clamp(0.85rem, 2vw, 0.95rem);
     text-decoration: none; transition: all 0.2s;
     font-family: 'DM Sans', sans-serif;
@@ -168,128 +199,85 @@
     flex-wrap: wrap;
   }
   .stat-item { display: flex; flex-direction: column; gap: 4px; }
-  .stat-num {
-    font-family: 'Syne', sans-serif; font-size: clamp(1.4rem, 3vw, 2rem);
-    font-weight: 800; color: var(--accent);
-  }
-  .stat-label { font-size: clamp(0.65rem, 1.5vw, 0.8rem); color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+  .stat-num { font-family: 'Syne', sans-serif; font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 800; color: var(--accent); }
+  .stat-label { font-size: clamp(0.65rem, 1.5vw, 0.78rem); color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
   .hero-scroll-hint {
-    position: absolute; bottom: 32px; left: 50%;
-    transform: translateX(-50%);
+    position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
     display: flex; flex-direction: column; align-items: center; gap: 6px;
-    color: var(--muted); font-size: 0.75rem; letter-spacing: 0.1em;
-    text-transform: uppercase; animation: bounceY 2s infinite;
-    z-index: 1;
+    color: var(--muted); font-size: 0.72rem; letter-spacing: 0.1em;
+    text-transform: uppercase; animation: bounceY 2s infinite; z-index: 1;
   }
   .scroll-arrow { width: 1px; height: 32px; background: linear-gradient(var(--accent), transparent); }
 
-  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
   @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
   @keyframes bounceY { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(6px)} }
 
-  /* SECTIONS */
+  /* ── SECTIONS ── */
   section { padding: clamp(60px, 8vw, 100px) 5%; }
-  .section-label {
-    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em;
-    text-transform: uppercase; color: var(--accent);
-    margin-bottom: 1rem; display: block;
-  }
-  .section-title {
-    font-size: clamp(1.4rem, 3.5vw, 3rem);
-    font-weight: 800; letter-spacing: -0.02em;
-    margin-bottom: 1.2rem;
-    word-break: break-word;
-  }
-  .section-sub {
-    color: var(--muted); font-size: clamp(0.9rem, 2vw, 1.05rem); max-width: 600px;
-    line-height: 1.8; font-weight: 300;
-  }
+  .section-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; display: block; }
+  .section-title { font-size: clamp(1.5rem, 3.5vw, 2.8rem); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 1.2rem; word-break: break-word; }
+  .section-sub { color: var(--muted); font-size: clamp(0.9rem, 2vw, 1.05rem); max-width: 600px; line-height: 1.8; font-weight: 300; }
   .section-header { margin-bottom: clamp(2rem, 5vw, 4rem); }
 
-  /* SERVICES */
+  /* ── SERVICES ── */
   #services { background: var(--c2); }
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
-    gap: 1.5rem;
-  }
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 1.5rem; }
   .service-card {
-    background: var(--card-bg);
-    border: 1px solid var(--border);
+    background: var(--card-bg); border: 1px solid var(--border);
     border-radius: 16px; padding: clamp(1.2rem, 3vw, 2rem);
     position: relative; overflow: hidden;
-    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
-    cursor: default;
+    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s; cursor: default;
   }
   .service-card::before {
-    content: ''; position: absolute;
-    top: 0; left: 0; right: 0; height: 2px;
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
     background: linear-gradient(90deg, var(--accent), var(--accent2));
     opacity: 0; transition: opacity 0.3s;
   }
   .service-card:hover { transform: translateY(-4px); border-color: rgba(0,212,180,0.4); box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
   .service-card:hover::before { opacity: 1; }
-  .service-icon {
-    width: 52px; height: 52px;
-    background: rgba(0,212,180,0.1);
-    border: 1px solid rgba(0,212,180,0.2);
-    border-radius: 12px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.4rem; margin-bottom: 1.4rem;
-  }
-  .service-title { font-family: 'Syne', sans-serif; font-size: clamp(1rem, 2vw, 1.15rem); font-weight: 700; margin-bottom: 0.7rem; }
-  .service-desc { color: var(--muted); font-size: clamp(0.85rem, 1.5vw, 0.92rem); line-height: 1.75; }
+  .service-icon { width: 50px; height: 50px; background: rgba(0,212,180,0.1); border: 1px solid rgba(0,212,180,0.2); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.35rem; margin-bottom: 1.3rem; }
+  .service-title { font-family: 'Syne', sans-serif; font-size: clamp(1rem, 2vw, 1.1rem); font-weight: 700; margin-bottom: 0.65rem; }
+  .service-desc { color: var(--muted); font-size: clamp(0.84rem, 1.5vw, 0.9rem); line-height: 1.75; }
   .service-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 1.2rem; }
-  .tag {
-    font-size: 0.72rem; font-weight: 500;
-    background: rgba(0,212,180,0.08);
-    border: 1px solid rgba(0,212,180,0.2);
-    color: var(--accent); padding: 3px 10px; border-radius: 20px;
-    letter-spacing: 0.03em;
-  }
+  .tag { font-size: 0.7rem; font-weight: 600; background: rgba(0,212,180,0.07); border: 1px solid rgba(0,212,180,0.18); color: var(--accent); padding: 3px 10px; border-radius: 20px; letter-spacing: 0.03em; }
 
-  /* APPROACH */
+  /* ── APPROACH ── */
   #approach { background: var(--c1); }
   .approach-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
-  .approach-left { display: flex; flex-direction: column; gap: 1.5rem; }
+  .approach-left { display: flex; flex-direction: column; gap: 1.4rem; }
   .step-item {
     display: flex; gap: 1.2rem; align-items: flex-start;
     padding: 1.4rem; background: var(--card-bg);
-    border: 1px solid var(--border); border-radius: 12px; transition: border-color 0.2s;
+    border: 1px solid var(--border); border-radius: 12px;
+    transition: border-color 0.2s, transform 0.2s;
   }
-  .step-item:hover { border-color: rgba(0,212,180,0.35); }
+  .step-item:hover { border-color: rgba(0,212,180,0.35); transform: translateX(4px); }
   .step-num {
     font-family: 'Syne', sans-serif; font-size: 0.75rem; font-weight: 800; color: var(--accent);
     background: rgba(0,212,180,0.1); border: 1px solid rgba(0,212,180,0.3);
     width: 32px; height: 32px; border-radius: 8px;
     display: flex; align-items: center; justify-content: center; flex-shrink: 0;
   }
-  .step-body h4 { font-family:'Syne',sans-serif; font-weight:700; margin-bottom:4px; font-size:clamp(0.85rem, 1.8vw, 0.95rem); }
-  .step-body p { color: var(--muted); font-size: clamp(0.82rem, 1.5vw, 0.88rem); line-height:1.7; }
+  .step-body h4 { font-family:'Syne',sans-serif; font-weight:700; margin-bottom:4px; font-size:clamp(0.85rem,1.8vw,0.95rem); }
+  .step-body p { color: var(--muted); font-size: clamp(0.82rem,1.5vw,0.88rem); line-height:1.7; }
   .approach-right {
     background: var(--card-bg); border: 1px solid var(--border);
-    border-radius: 16px; padding: clamp(1.2rem, 3vw, 2.5rem);
+    border-radius: 16px; padding: clamp(1.2rem,3vw,2.5rem);
     display: flex; flex-direction: column; gap: 1.5rem;
   }
-  .tech-section h4 {
-    font-family: 'Syne', sans-serif; font-size: 0.8rem; font-weight: 700;
-    text-transform: uppercase; letter-spacing: 0.1em;
-    color: var(--muted); margin-bottom: 0.8rem;
-  }
+  .tech-section h4 { font-family:'Syne',sans-serif; font-size:0.78rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--muted); margin-bottom:0.8rem; }
   .tech-chips { display: flex; flex-wrap: wrap; gap: 8px; }
-  .chip {
-    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
-    padding: 5px 14px; border-radius: 20px; font-size: clamp(0.75rem, 1.5vw, 0.82rem); color: #ccd6f6;
-  }
+  .chip { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); padding: 5px 14px; border-radius: 20px; font-size: clamp(0.74rem,1.5vw,0.82rem); color: #ccd6f6; transition: all 0.2s; }
+  .chip:hover { background: rgba(0,212,180,0.08); border-color: rgba(0,212,180,0.25); color: var(--accent); }
   .divider { height: 1px; background: rgba(255,255,255,0.06); }
 
-  /* WHY */
+  /* ── WHY ── */
   #why { background: var(--c3); }
   .why-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 5rem; align-items: center; }
   .why-visual { position: relative; height: 400px; }
   @keyframes spinSlow { from{transform:translate(-50%,-50%) rotate(0deg)} to{transform:translate(-50%,-50%) rotate(360deg)} }
   .circle-bg {
-    position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+    position: absolute; top: 50%; left: 50%;
     width: 340px; height: 340px; border-radius: 50%;
     border: 1px solid rgba(0,212,180,0.12);
     animation: spinSlow 30s linear infinite;
@@ -299,7 +287,7 @@
     border: 1px dashed rgba(0,148,255,0.12);
     animation: spinSlow 20s linear infinite reverse;
   }
-  .circle-bg::after  { content: ''; position: absolute; inset: 72px; border-radius: 50%; border: 1px solid rgba(0,212,180,0.18); }
+  .circle-bg::after { content: ''; position: absolute; inset: 72px; border-radius: 50%; border: 1px solid rgba(0,212,180,0.18); }
   .center-logo-big {
     position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
     width: 105px; height: 105px;
@@ -310,69 +298,59 @@
     box-shadow: 0 0 0 1px rgba(0,212,180,0.3), 0 0 60px rgba(0,212,180,0.25), 0 0 100px rgba(0,148,255,0.15);
   }
   .orbit-item {
-    position: absolute; width: 44px; height: 36px;
+    position: absolute; width: 44px; height: 44px;
     background: var(--c2); border: 1px solid var(--border);
     border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
   }
-  .orbit-item:nth-child(1) { top: 8%; left: 50%; transform: translateX(-50%); }
-  .orbit-item:nth-child(2) { top: 25%; right: 8%; }
-  .orbit-item:nth-child(3) { bottom: 25%; right: 8%; }
-  .orbit-item:nth-child(4) { bottom: 8%; left: 50%; transform: translateX(-50%); }
-  .orbit-item:nth-child(5) { bottom: 25%; left: 8%; }
-  .orbit-item:nth-child(6) { top: 25%; left: 8%; }
-  .why-points { display: flex; flex-direction: column; gap: 1.2rem; }
+  .orbit-item:nth-child(1){top:8%;left:50%;transform:translateX(-50%);}
+  .orbit-item:nth-child(2){top:25%;right:8%;}
+  .orbit-item:nth-child(3){bottom:25%;right:8%;}
+  .orbit-item:nth-child(4){bottom:8%;left:50%;transform:translateX(-50%);}
+  .orbit-item:nth-child(5){bottom:25%;left:8%;}
+  .orbit-item:nth-child(6){top:25%;left:8%;}
+  .why-points { display: flex; flex-direction: column; gap: 1.1rem; }
   .why-point {
     display: flex; gap: 1rem; align-items: flex-start;
     padding: 1.2rem; background: rgba(255,255,255,0.03);
     border-left: 2px solid var(--accent); border-radius: 0 8px 8px 0;
+    transition: background 0.2s, transform 0.2s;
   }
+  .why-point:hover { background: rgba(0,212,180,0.04); transform: translateX(4px); }
   .why-point-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 2px; }
-  .why-point h4 { font-family:'Syne',sans-serif; font-size:clamp(0.85rem, 1.8vw, 0.95rem); font-weight:700; margin-bottom:4px; }
-  .why-point p { color: var(--muted); font-size: clamp(0.82rem, 1.5vw, 0.87rem); line-height:1.7; }
+  .why-point h4 { font-family:'Syne',sans-serif; font-size:clamp(0.85rem,1.8vw,0.95rem); font-weight:700; margin-bottom:4px; }
+  .why-point p { color: var(--muted); font-size: clamp(0.82rem,1.5vw,0.87rem); line-height:1.7; }
 
-  /* SECTORS */
+  /* ── SECTORS ── */
   #sectors { background: var(--c1); }
-  .sectors-grid {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 1rem;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
+  .sectors-grid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 1rem; max-width: 1200px; margin: 0 auto; }
   .sector-card {
     background: linear-gradient(135deg, #0f172a, #1e293b);
     border: 1px solid rgba(0,212,180,0.15);
-    border-radius: 20px; padding: clamp(1.2rem, 3vw, 1.8rem) 1rem;
+    border-radius: 20px; padding: clamp(1.2rem,3vw,1.8rem) 1rem;
     text-align: center; cursor: default;
     transition: all 0.3s ease;
     display: flex; flex-direction: column; align-items: center; justify-content: center;
   }
-  .sector-card:hover{background:#ffffff;border-color:#ffffff;transform:translateY(-5px);box-shadow:0 16px 40px rgba(0,0,0,0.25);}
-.sector-card:hover .sector-name{color:#060d1a;}
-  .sector-icon { font-size: clamp(1.6rem, 3vw, 2.2rem); margin-bottom: 0.75rem; display: block; }
-  .sector-name {
-    font-family: 'Syne', sans-serif; font-size: clamp(0.75rem, 1.5vw, 0.95rem); font-weight: 700;
-    color: var(--white); line-height: 1.3; transition: color 0.3s;
-  }
+  .sector-card:hover { background: #ffffff; border-color: #ffffff; transform: translateY(-5px); box-shadow: 0 16px 40px rgba(0,0,0,0.25); }
   .sector-card:hover .sector-name { color: #0f172a; }
+  .sector-icon { font-size: clamp(1.6rem,3vw,2.2rem); margin-bottom: 0.75rem; display: block; }
+  .sector-name { font-family: 'Syne', sans-serif; font-size: clamp(0.72rem,1.5vw,0.9rem); font-weight: 700; color: var(--white); line-height: 1.3; transition: color 0.3s; }
 
-  /* CONTACT */
+  /* ── CONTACT ── */
   #contact { background: var(--c2); }
   .contact-wrapper { max-width: 680px; margin: 0 auto; text-align: center; }
-  .contact-card {
-    background: var(--card-bg); border: 1px solid var(--border);
-    border-radius: 20px; padding: clamp(1.5rem, 4vw, 3rem); margin-top: 3rem; text-align: left;
-  }
+  .contact-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; padding: clamp(1.5rem,4vw,3rem); margin-top: 3rem; text-align: left; }
   .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
   .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 1rem; }
   .form-group label { font-size: 0.82rem; color: var(--muted); font-weight: 500; }
   .form-group input, .form-group textarea, .form-group select {
     background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
-    border-radius: 8px; padding: 10px 14px;
+    border-radius: 8px; padding: 11px 14px;
     color: var(--white); font-family: 'DM Sans', sans-serif;
-    font-size: 0.92rem; outline: none; transition: border-color 0.2s;
+    font-size: 0.92rem; outline: none; transition: border-color 0.2s, background 0.2s;
   }
-  .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--accent); }
+  .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--accent); background: rgba(0,212,180,0.04); }
   .form-group textarea { resize: vertical; min-height: 110px; }
   .form-group select option { background: #1a2740; }
   .form-submit {
@@ -384,73 +362,67 @@
     cursor: pointer; transition: all 0.2s; margin-top: 0.5rem;
   }
   .form-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,212,180,0.3); }
-  .contact-info { display: flex; justify-content: center; gap: clamp(1rem, 4vw, 3rem); margin-top: 2.5rem; flex-wrap: wrap; }
+  .contact-info { display: flex; justify-content: center; gap: clamp(1rem,4vw,3rem); margin-top: 2.5rem; flex-wrap: wrap; }
   .contact-item { display: flex; gap: 10px; align-items: center; }
-  .contact-item-icon {
-    width: 38px; height: 38px;
-    background: rgba(0,212,180,0.1); border: 1px solid rgba(0,212,180,0.2);
-    border-radius: 8px; display: flex; align-items: center; justify-content: center;
-    font-size: 1rem; flex-shrink: 0;
-  }
+  .contact-item-icon { width: 38px; height: 38px; background: rgba(0,212,180,0.1); border: 1px solid rgba(0,212,180,0.2); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
   .contact-item-text span { display: block; }
   .contact-item-text .ci-label { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
-  .contact-item-text .ci-val  { font-size: 0.88rem; font-weight: 500; }
+  .contact-item-text .ci-val { font-size: 0.88rem; font-weight: 500; }
 
-  /* FOOTER */
-  footer {
-    background: var(--c1); border-top: 1px solid rgba(255,255,255,0.06);
-    padding: 3rem 5%; display: grid;
-    grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 3rem;
-  }
+  /* ── FOOTER ── */
+  footer { background: var(--c1); border-top: 1px solid rgba(255,255,255,0.06); padding: 3rem 5%; display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 3rem; }
   .footer-brand p { color: var(--muted); font-size: 0.88rem; line-height:1.7; margin-top:1rem; max-width:240px; }
-  .footer-col h5 {
-    font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.85rem;
-    text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 1rem;
-  }
-  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
-  .footer-col ul a { text-decoration: none; color: #8899B3; font-size: 0.88rem; transition: color 0.2s; }
-  .footer-col ul a:hover { color: var(--accent); }
-  .footer-bottom {
-    background: var(--c1); border-top: 1px solid rgba(255,255,255,0.05);
-    padding: 1.2rem 5%; display: flex; justify-content: space-between; align-items: center;
-    flex-wrap: wrap; gap: 0.5rem;
-  }
-  .footer-bottom p { color: var(--muted); font-size: 0.8rem; }
-  .footer-accent { color: var(--accent); font-weight: 600; }
+  .footer-col h5 { font-family:'Syne',sans-serif; font-weight:700; font-size:0.82rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--muted); margin-bottom:1rem; }
+  .footer-col ul { list-style:none; display:flex; flex-direction:column; gap:0.6rem; }
+  .footer-col ul a { text-decoration:none; color:#8899B3; font-size:0.88rem; transition:color 0.2s; }
+  .footer-col ul a:hover { color:var(--accent); }
+  .footer-bottom { background:var(--c1); border-top:1px solid rgba(255,255,255,0.05); padding:1.2rem 5%; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; }
+  .footer-bottom p { color:var(--muted); font-size:0.8rem; }
+  .footer-accent { color:var(--accent); font-weight:600; }
 
-  /* SCROLL ANIMATIONS */
-  .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.6s, transform 0.6s; }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
-  .reveal-delay-1 { transition-delay: 0.1s; }
-  .reveal-delay-2 { transition-delay: 0.2s; }
-  .reveal-delay-3 { transition-delay: 0.3s; }
+  /* ── REVEAL ── */
+  .reveal { opacity:0; transform:translateY(28px); transition:opacity 0.65s,transform 0.65s; }
+  .reveal.visible { opacity:1; transform:translateY(0); }
+  .reveal-delay-1 { transition-delay:0.12s; }
+  .reveal-delay-2 { transition-delay:0.24s; }
+  .reveal-delay-3 { transition-delay:0.36s; }
 
-  /* RESPONSIVE */
+  /* ── RESPONSIVE ── */
   @media (max-width: 1024px) {
-    .snf-logo-svg { height: 60px; }
+    .snf-logo-svg { height: 62px; }
+    .sectors-grid { grid-template-columns: repeat(3, minmax(0,1fr)); }
   }
   @media (max-width: 900px) {
     .approach-grid, .why-grid { grid-template-columns: 1fr; }
     footer { grid-template-columns: 1fr 1fr; }
     .why-visual { display: none; }
-    .sectors-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .snf-logo-svg { height: 50px; }
+    .sectors-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    .snf-logo-svg { height: 54px; }
   }
   @media (max-width: 640px) {
-    :root { --nav-h: 60px; }
+    :root { --nav-h: 62px; }
     .nav-links { display: none; }
+    .nav-cta { display: none; }
+    .hamburger { display: flex; }
+    .lang-toggle { margin-left: auto; margin-right: 12px; }
+    .snf-logo-svg { height: 44px; }
     .form-row { grid-template-columns: 1fr; }
-    footer { grid-template-columns: 1fr; }
+    footer { grid-template-columns: 1fr; gap: 2rem; }
     .hero-stats { gap: 1.2rem; }
-    .sectors-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .snf-logo-svg { height: 36px; }
-    .nav-cta { padding: 6px 12px; font-size: 0.78rem; }
+    .sectors-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
     .contact-info { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    h1.hero-title { margin-top: 2rem; font-size: clamp(1.7rem, 9vw, 2.6rem); }
+    .hero-sub { font-size: 0.95rem; }
+    .btn-primary, .btn-outline { padding: 12px 20px; width: 100%; justify-content: center; }
+    .hero-actions { flex-direction: column; }
+    .section-title { font-size: clamp(1.4rem, 7vw, 2rem); }
+    .approach-grid { grid-template-columns: 1fr; }
+    .footer-bottom { flex-direction: column; text-align: center; }
   }
-  @media (max-width: 380px) {
-    .snf-logo-svg { height: 36px; }
-    .hero-stats { gap: 1rem; }
-    .stat-num { font-size: 1.2rem; }
+  @media (max-width: 400px) {
+    .snf-logo-svg { height: 38px; }
+    .stat-num { font-size: 1.3rem; }
+    .sectors-grid { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 0.6rem; }
   }
 </style>
 </head>
@@ -458,56 +430,66 @@
 
 <!-- NAV -->
 <nav>
-  <a href="#" class="logo" style="gap:0;">
+  <a href="#" class="logo">
     <svg class="snf-logo-svg" viewBox="0 0 320 80" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <linearGradient id="shieldBlue" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" style="stop-color:#5AABF5;stop-opacity:1" />
-          <stop offset="40%" style="stop-color:#1B6FCC;stop-opacity:1" />
-          <stop offset="100%" style="stop-color:#0D3A7A;stop-opacity:1" />
+          <stop offset="0%" style="stop-color:#5AABF5;stop-opacity:1"/>
+          <stop offset="40%" style="stop-color:#1B6FCC;stop-opacity:1"/>
+          <stop offset="100%" style="stop-color:#0D3A7A;stop-opacity:1"/>
         </linearGradient>
         <linearGradient id="shieldSilver" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" style="stop-color:#E0E8F4;stop-opacity:1" />
-          <stop offset="50%" style="stop-color:#9AAEC8;stop-opacity:1" />
-          <stop offset="100%" style="stop-color:#5A6E8A;stop-opacity:1" />
+          <stop offset="0%" style="stop-color:#E0E8F4;stop-opacity:1"/>
+          <stop offset="50%" style="stop-color:#9AAEC8;stop-opacity:1"/>
+          <stop offset="100%" style="stop-color:#5A6E8A;stop-opacity:1"/>
         </linearGradient>
         <linearGradient id="textGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" style="stop-color:#4A7FC0;stop-opacity:1" />
-          <stop offset="100%" style="stop-color:#0D2A5A;stop-opacity:1" />
+          <stop offset="0%" style="stop-color:#4A7FC0;stop-opacity:1"/>
+          <stop offset="100%" style="stop-color:#0D2A5A;stop-opacity:1"/>
         </linearGradient>
         <linearGradient id="underlineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" style="stop-color:#5AABF5;stop-opacity:1" />
-          <stop offset="100%" style="stop-color:#0D3A7A;stop-opacity:0.3" />
+          <stop offset="0%" style="stop-color:#5AABF5;stop-opacity:1"/>
+          <stop offset="100%" style="stop-color:#0D3A7A;stop-opacity:0.3"/>
         </linearGradient>
       </defs>
-      <polygon points="8,8 52,8 30,72" fill="url(#shieldBlue)" />
-      <polygon points="18,20 52,8 32,56" fill="url(#shieldSilver)" opacity="0.85" />
+      <polygon points="8,8 52,8 30,72" fill="url(#shieldBlue)"/>
+      <polygon points="18,20 52,8 32,56" fill="url(#shieldSilver)" opacity="0.85"/>
       <line x1="30" y1="72" x2="52" y2="8" stroke="#0D2A5A" stroke-width="1.5" opacity="0.4"/>
-      <text x="62" y="52" font-family="'Syne', 'Arial Black', sans-serif" font-weight="800"
-            font-size="42" fill="url(#textGrad)" letter-spacing="-1">SNF</text>
-      <text x="62" y="67" font-family="'DM Sans', Arial, sans-serif" font-weight="400"
-            font-style="italic" font-size="11" fill="#5A7099" letter-spacing="0.2">
-        L'expertise numérique qui structure votre avenir
-      </text>
+      <text x="62" y="52" font-family="'Syne','Arial Black',sans-serif" font-weight="800" font-size="42" fill="url(#textGrad)" letter-spacing="-1">SNF</text>
+      <text x="62" y="67" font-family="'DM Sans',Arial,sans-serif" font-weight="400" font-style="italic" font-size="11" fill="#5A7099" letter-spacing="0.2">L'expertise numérique qui structure votre avenir</text>
       <line x1="62" y1="71" x2="315" y2="71" stroke="url(#underlineGrad)" stroke-width="1"/>
     </svg>
   </a>
 
   <ul class="nav-links">
-    <li><a href="#services"  data-fr="Services"       data-en="Services">Services</a></li>
-    <li><a href="#approach"  data-fr="Approche"        data-en="Approach">Approche</a></li>
-    <li><a href="#why"       data-fr="Pourquoi Nous"   data-en="Why Us">Pourquoi Nous</a></li>
-    <li><a href="#sectors"   data-fr="Secteurs"        data-en="Sectors">Secteurs</a></li>
-    <li><a href="#contact"   data-fr="Contact"         data-en="Contact">Contact</a></li>
+    <li><a href="#services"  data-fr="Services"     data-en="Services">Services</a></li>
+    <li><a href="#approach"  data-fr="Approche"      data-en="Approach">Approche</a></li>
+    <li><a href="#why"       data-fr="Pourquoi Nous" data-en="Why Us">Pourquoi Nous</a></li>
+    <li><a href="#sectors"   data-fr="Secteurs"      data-en="Sectors">Secteurs</a></li>
+    <li><a href="#contact"   data-fr="Contact"       data-en="Contact">Contact</a></li>
   </ul>
+
   <div style="display:flex;align-items:center;gap:12px;">
     <div class="lang-toggle">
       <button class="lang-btn active" onclick="setLang('fr')">FR</button>
       <button class="lang-btn"        onclick="setLang('en')">EN</button>
     </div>
     <a href="tel:+14389242652" class="nav-cta">📞 +1 438 924 2652</a>
+    <button class="hamburger" id="hamburger" aria-label="Menu" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#services"  onclick="closeMenu()" data-fr="Services"     data-en="Services">Services</a>
+  <a href="#approach"  onclick="closeMenu()" data-fr="Approche"      data-en="Approach">Approche</a>
+  <a href="#why"       onclick="closeMenu()" data-fr="Pourquoi Nous" data-en="Why Us">Pourquoi Nous</a>
+  <a href="#sectors"   onclick="closeMenu()" data-fr="Secteurs"      data-en="Sectors">Secteurs</a>
+  <a href="#contact"   onclick="closeMenu()" data-fr="Contact"       data-en="Contact">Contact</a>
+  <a href="tel:+14389242652" class="mobile-cta" onclick="closeMenu()">📞 +1 438 924 2652</a>
+</div>
 
 <!-- HERO -->
 <section id="hero">
@@ -527,9 +509,7 @@
       Solutions Numériques Foko accompagne les entreprises dans leur évolution technologique — APIs, Cloud, DevOps, Intégration et Migration. Expertise locale, impact global.
     </p>
     <div class="hero-actions">
-      <a href="#services" class="btn-primary">
-        <span data-fr="Nos Services" data-en="Our Services">Nos Services</span> →
-      </a>
+      <a href="#services" class="btn-primary"><span data-fr="Nos Services" data-en="Our Services">Nos Services</span> →</a>
       <a href="#contact" class="btn-outline" data-fr="Démarrer un projet" data-en="Start a Project">Démarrer un projet</a>
     </div>
     <div class="hero-stats">
@@ -562,70 +542,44 @@
   <div class="section-header reveal">
     <span class="section-label" data-fr="Notre expertise" data-en="Our Expertise">Notre expertise</span>
     <h2 class="section-title" data-fr="Des services au cœur de votre évolution" data-en="Services at the Heart of Your Evolution">Des services au cœur de votre évolution</h2>
-    <p class="section-sub" data-fr="Nous concevons et déployons des solutions technologiques robustes, adaptées aux besoins spécifiques de chaque organisation." data-en="We design and deploy robust technological solutions tailored to the specific needs of each organization.">
-      Nous concevons et déployons des solutions technologiques robustes, adaptées aux besoins spécifiques de chaque organisation.
-    </p>
+    <p class="section-sub" data-fr="Nous concevons et déployons des solutions technologiques robustes, adaptées aux besoins spécifiques de chaque organisation." data-en="We design and deploy robust technological solutions tailored to the specific needs of each organization.">Nous concevons et déployons des solutions technologiques robustes, adaptées aux besoins spécifiques de chaque organisation.</p>
   </div>
   <div class="services-grid">
     <div class="service-card reveal">
       <div class="service-icon">⚡</div>
       <h3 class="service-title" data-fr="Développement d'API" data-en="API Development">Développement d'API</h3>
-      <p class="service-desc" data-fr="Conception et développement d'APIs REST, GraphQL et microservices évolutifs. Architecture robuste, documentation complète et intégration fluide pour connecter vos systèmes." data-en="Design and development of scalable REST, GraphQL APIs and microservices. Robust architecture, full documentation, and seamless integration to connect your systems.">
-        Conception et développement d'APIs REST, GraphQL et microservices évolutifs. Architecture robuste, documentation complète et intégration fluide pour connecter vos systèmes.
-      </p>
-      <div class="service-tags">
-        <span class="tag">REST</span><span class="tag">GraphQL</span><span class="tag">Spring Boot</span><span class="tag">Microservices</span><span class="tag">OpenAPI</span>
-      </div>
+      <p class="service-desc" data-fr="Conception et développement d'APIs REST, GraphQL et microservices évolutifs. Architecture robuste, documentation complète et intégration fluide pour connecter vos systèmes." data-en="Design and development of scalable REST, GraphQL APIs and microservices. Robust architecture, full documentation, and seamless integration to connect your systems.">Conception et développement d'APIs REST, GraphQL et microservices évolutifs. Architecture robuste, documentation complète et intégration fluide pour connecter vos systèmes.</p>
+      <div class="service-tags"><span class="tag">REST</span><span class="tag">GraphQL</span><span class="tag">Spring Boot</span><span class="tag">Microservices</span><span class="tag">OpenAPI</span></div>
     </div>
     <div class="service-card reveal reveal-delay-1">
       <div class="service-icon">☁️</div>
       <h3 class="service-title" data-fr="Cloud" data-en="Cloud">Cloud</h3>
-      <p class="service-desc" data-fr="Architectures cloud native et hybrides sur AWS, Azure et GCP. Optimisation des coûts, haute disponibilité et sécurité renforcée pour vos infrastructures numériques." data-en="Cloud native and hybrid architectures on AWS, Azure, and GCP. Cost optimization, high availability and enhanced security for your digital infrastructure.">
-        Architectures cloud native et hybrides sur AWS, Azure et GCP. Optimisation des coûts, haute disponibilité et sécurité renforcée pour vos infrastructures numériques.
-      </p>
-      <div class="service-tags">
-        <span class="tag">AWS</span><span class="tag">Azure</span><span class="tag">GCP</span><span class="tag">Kubernetes</span><span class="tag">Terraform</span>
-      </div>
+      <p class="service-desc" data-fr="Architectures cloud native et hybrides sur AWS, Azure et GCP. Optimisation des coûts, haute disponibilité et sécurité renforcée pour vos infrastructures numériques." data-en="Cloud native and hybrid architectures on AWS, Azure, and GCP. Cost optimization, high availability and enhanced security for your digital infrastructure.">Architectures cloud native et hybrides sur AWS, Azure et GCP. Optimisation des coûts, haute disponibilité et sécurité renforcée pour vos infrastructures numériques.</p>
+      <div class="service-tags"><span class="tag">AWS</span><span class="tag">Azure</span><span class="tag">GCP</span><span class="tag">Kubernetes</span><span class="tag">Terraform</span></div>
     </div>
     <div class="service-card reveal reveal-delay-2">
       <div class="service-icon">🔄</div>
       <h3 class="service-title" data-fr="DevOps" data-en="DevOps">DevOps</h3>
-      <p class="service-desc" data-fr="Pipelines CI/CD, automatisation du déploiement et culture DevOps. Nous accélérons vos cycles de livraison tout en garantissant qualité et résilience des systèmes." data-en="CI/CD pipelines, deployment automation and DevOps culture. We accelerate your delivery cycles while ensuring quality and system resilience.">
-        Pipelines CI/CD, automatisation du déploiement et culture DevOps. Nous accélérons vos cycles de livraison tout en garantissant qualité et résilience des systèmes.
-      </p>
-      <div class="service-tags">
-        <span class="tag">Docker</span><span class="tag">GitHub Actions</span><span class="tag">Jenkins</span><span class="tag">Ansible</span><span class="tag">Monitoring</span>
-      </div>
+      <p class="service-desc" data-fr="Pipelines CI/CD, automatisation du déploiement et culture DevOps. Nous accélérons vos cycles de livraison tout en garantissant qualité et résilience des systèmes." data-en="CI/CD pipelines, deployment automation and DevOps culture. We accelerate your delivery cycles while ensuring quality and system resilience.">Pipelines CI/CD, automatisation du déploiement et culture DevOps. Nous accélérons vos cycles de livraison tout en garantissant qualité et résilience des systèmes.</p>
+      <div class="service-tags"><span class="tag">Docker</span><span class="tag">GitHub Actions</span><span class="tag">Jenkins</span><span class="tag">Ansible</span><span class="tag">Monitoring</span></div>
     </div>
     <div class="service-card reveal">
       <div class="service-icon">🔗</div>
       <h3 class="service-title" data-fr="Intégration" data-en="Integration">Intégration</h3>
-      <p class="service-desc" data-fr="Intégration de systèmes hétérogènes, ERP, CRM et solutions tierces. Nous assurons la cohérence et la fluidité des données à travers tout votre écosystème numérique." data-en="Integration of heterogeneous systems, ERPs, CRMs and third-party solutions. We ensure data consistency and fluidity across your entire digital ecosystem.">
-        Intégration de systèmes hétérogènes, ERP, CRM et solutions tierces. Nous assurons la cohérence et la fluidité des données à travers tout votre écosystème numérique.
-      </p>
-      <div class="service-tags">
-        <span class="tag">Apache Kafka</span><span class="tag">Apache Camel</span><span class="tag">ETL</span><span class="tag">Webhooks</span><span class="tag">ESB</span>
-      </div>
+      <p class="service-desc" data-fr="Intégration de systèmes hétérogènes, ERP, CRM et solutions tierces. Nous assurons la cohérence et la fluidité des données à travers tout votre écosystème numérique." data-en="Integration of heterogeneous systems, ERPs, CRMs and third-party solutions. We ensure data consistency and fluidity across your entire digital ecosystem.">Intégration de systèmes hétérogènes, ERP, CRM et solutions tierces. Nous assurons la cohérence et la fluidité des données à travers tout votre écosystème numérique.</p>
+      <div class="service-tags"><span class="tag">Apache Kafka</span><span class="tag">Apache Camel</span><span class="tag">ETL</span><span class="tag">Webhooks</span><span class="tag">ESB</span></div>
     </div>
     <div class="service-card reveal reveal-delay-1">
       <div class="service-icon">🚀</div>
       <h3 class="service-title" data-fr="Migration" data-en="Migration">Migration</h3>
-      <p class="service-desc" data-fr="Migration vers le cloud, modernisation d'applications legacy et transition vers des architectures microservices. Risque maîtrisé, continuité de service assurée." data-en="Cloud migration, legacy application modernization and transition to microservices architectures. Controlled risk, guaranteed service continuity.">
-        Migration vers le cloud, modernisation d'applications legacy et transition vers des architectures microservices. Risque maîtrisé, continuité de service assurée.
-      </p>
-      <div class="service-tags">
-        <span class="tag">Cloud Lift &amp; Shift</span><span class="tag">Re-architecture</span><span class="tag">Data Migration</span><span class="tag">Zero Downtime</span>
-      </div>
+      <p class="service-desc" data-fr="Migration vers le cloud, modernisation d'applications legacy et transition vers des architectures microservices. Risque maîtrisé, continuité de service assurée." data-en="Cloud migration, legacy application modernization and transition to microservices architectures. Controlled risk, guaranteed service continuity.">Migration vers le cloud, modernisation d'applications legacy et transition vers des architectures microservices. Risque maîtrisé, continuité de service assurée.</p>
+      <div class="service-tags"><span class="tag">Cloud Lift &amp; Shift</span><span class="tag">Re-architecture</span><span class="tag">Data Migration</span><span class="tag">Zero Downtime</span></div>
     </div>
     <div class="service-card reveal reveal-delay-2" style="border-color:rgba(0,212,180,0.35);background:rgba(0,212,180,0.05);">
       <div class="service-icon">💡</div>
       <h3 class="service-title" data-fr="Conseil &amp; Architecture" data-en="Consulting &amp; Architecture">Conseil &amp; Architecture</h3>
-      <p class="service-desc" data-fr="Audit de vos systèmes existants, définition de feuilles de route technologiques et accompagnement stratégique dans vos choix d'architecture et de transformation." data-en="Audit of existing systems, definition of technology roadmaps and strategic guidance in your architecture and transformation decisions.">
-        Audit de vos systèmes existants, définition de feuilles de route technologiques et accompagnement stratégique dans vos choix d'architecture et de transformation.
-      </p>
-      <div class="service-tags">
-        <span class="tag">Architecture Review</span><span class="tag">Roadmap</span><span class="tag">Due Diligence</span>
-      </div>
+      <p class="service-desc" data-fr="Audit de vos systèmes existants, définition de feuilles de route technologiques et accompagnement stratégique dans vos choix d'architecture et de transformation." data-en="Audit of existing systems, definition of technology roadmaps and strategic guidance in your architecture and transformation decisions.">Audit de vos systèmes existants, définition de feuilles de route technologiques et accompagnement stratégique dans vos choix d'architecture et de transformation.</p>
+      <div class="service-tags"><span class="tag">Architecture Review</span><span class="tag">Roadmap</span><span class="tag">Due Diligence</span></div>
     </div>
   </div>
 </section>
@@ -635,69 +589,23 @@
   <div class="section-header reveal">
     <span class="section-label" data-fr="Méthodologie" data-en="Methodology">Méthodologie</span>
     <h2 class="section-title" data-fr="Notre approche" data-en="Our Approach">Notre approche</h2>
-    <p class="section-sub" data-fr="Une méthode éprouvée, agile et centrée sur vos résultats business." data-en="A proven, agile method focused on your business outcomes.">
-      Une méthode éprouvée, agile et centrée sur vos résultats business.
-    </p>
+    <p class="section-sub" data-fr="Une méthode éprouvée, agile et centrée sur vos résultats business." data-en="A proven, agile method focused on your business outcomes.">Une méthode éprouvée, agile et centrée sur vos résultats business.</p>
   </div>
   <div class="approach-grid">
     <div class="approach-left">
-      <div class="step-item reveal">
-        <div class="step-num">01</div>
-        <div class="step-body">
-          <h4 data-fr="Découverte &amp; Audit" data-en="Discovery &amp; Audit">Découverte &amp; Audit</h4>
-          <p data-fr="Analyse approfondie de vos systèmes, besoins et objectifs. Identification des opportunités et risques." data-en="In-depth analysis of your systems, needs and objectives. Identification of opportunities and risks.">Analyse approfondie de vos systèmes, besoins et objectifs. Identification des opportunités et risques.</p>
-        </div>
-      </div>
-      <div class="step-item reveal reveal-delay-1">
-        <div class="step-num">02</div>
-        <div class="step-body">
-          <h4 data-fr="Architecture &amp; Planification" data-en="Architecture &amp; Planning">Architecture &amp; Planification</h4>
-          <p data-fr="Conception de la solution technique et définition du plan de mise en œuvre, avec jalons clairs." data-en="Technical solution design and implementation plan with clear milestones.">Conception de la solution technique et définition du plan de mise en œuvre, avec jalons clairs.</p>
-        </div>
-      </div>
-      <div class="step-item reveal reveal-delay-2">
-        <div class="step-num">03</div>
-        <div class="step-body">
-          <h4 data-fr="Développement Agile" data-en="Agile Development">Développement Agile</h4>
-          <p data-fr="Sprints itératifs, démos régulières et intégration continue pour livrer de la valeur à chaque étape." data-en="Iterative sprints, regular demos and continuous integration to deliver value at each stage.">Sprints itératifs, démos régulières et intégration continue pour livrer de la valeur à chaque étape.</p>
-        </div>
-      </div>
-      <div class="step-item reveal">
-        <div class="step-num">04</div>
-        <div class="step-body">
-          <h4 data-fr="Déploiement &amp; Support" data-en="Deployment &amp; Support">Déploiement &amp; Support</h4>
-          <p data-fr="Mise en production sécurisée et accompagnement post-livraison pour garantir la stabilité et l'évolution." data-en="Secure production deployment and post-delivery support to ensure stability and growth.">Mise en production sécurisée et accompagnement post-livraison pour garantir la stabilité et l'évolution.</p>
-        </div>
-      </div>
+      <div class="step-item reveal"><div class="step-num">01</div><div class="step-body"><h4 data-fr="Découverte &amp; Audit" data-en="Discovery &amp; Audit">Découverte &amp; Audit</h4><p data-fr="Analyse approfondie de vos systèmes, besoins et objectifs. Identification des opportunités et risques." data-en="In-depth analysis of your systems, needs and objectives. Identification of opportunities and risks.">Analyse approfondie de vos systèmes, besoins et objectifs. Identification des opportunités et risques.</p></div></div>
+      <div class="step-item reveal reveal-delay-1"><div class="step-num">02</div><div class="step-body"><h4 data-fr="Architecture &amp; Planification" data-en="Architecture &amp; Planning">Architecture &amp; Planification</h4><p data-fr="Conception de la solution technique et définition du plan de mise en œuvre, avec jalons clairs." data-en="Technical solution design and implementation plan with clear milestones.">Conception de la solution technique et définition du plan de mise en œuvre, avec jalons clairs.</p></div></div>
+      <div class="step-item reveal reveal-delay-2"><div class="step-num">03</div><div class="step-body"><h4 data-fr="Développement Agile" data-en="Agile Development">Développement Agile</h4><p data-fr="Sprints itératifs, démos régulières et intégration continue pour livrer de la valeur à chaque étape." data-en="Iterative sprints, regular demos and continuous integration to deliver value at each stage.">Sprints itératifs, démos régulières et intégration continue pour livrer de la valeur à chaque étape.</p></div></div>
+      <div class="step-item reveal"><div class="step-num">04</div><div class="step-body"><h4 data-fr="Déploiement &amp; Support" data-en="Deployment &amp; Support">Déploiement &amp; Support</h4><p data-fr="Mise en production sécurisée et accompagnement post-livraison pour garantir la stabilité et l'évolution." data-en="Secure production deployment and post-delivery support to ensure stability and growth.">Mise en production sécurisée et accompagnement post-livraison pour garantir la stabilité et l'évolution.</p></div></div>
     </div>
     <div class="approach-right reveal reveal-delay-1">
-      <div class="tech-section">
-        <h4 data-fr="Backend &amp; API" data-en="Backend &amp; API">Backend &amp; API</h4>
-        <div class="tech-chips">
-          <span class="chip">Java / Spring Boot</span><span class="chip">Node.js</span><span class="chip">Python</span><span class="chip">REST / GraphQL</span><span class="chip">gRPC</span>
-        </div>
-      </div>
+      <div class="tech-section"><h4 data-fr="Backend &amp; API" data-en="Backend &amp; API">Backend &amp; API</h4><div class="tech-chips"><span class="chip">Java / Spring Boot</span><span class="chip">Node.js</span><span class="chip">Python</span><span class="chip">REST / GraphQL</span><span class="chip">gRPC</span></div></div>
       <div class="divider"></div>
-      <div class="tech-section">
-        <h4 data-fr="Cloud &amp; Infrastructure" data-en="Cloud &amp; Infrastructure">Cloud &amp; Infrastructure</h4>
-        <div class="tech-chips">
-          <span class="chip">AWS</span><span class="chip">Azure</span><span class="chip">GCP</span><span class="chip">Kubernetes</span><span class="chip">Terraform</span><span class="chip">Helm</span>
-        </div>
-      </div>
+      <div class="tech-section"><h4 data-fr="Cloud &amp; Infrastructure" data-en="Cloud &amp; Infrastructure">Cloud &amp; Infrastructure</h4><div class="tech-chips"><span class="chip">AWS</span><span class="chip">Azure</span><span class="chip">GCP</span><span class="chip">Kubernetes</span><span class="chip">Terraform</span><span class="chip">Helm</span></div></div>
       <div class="divider"></div>
-      <div class="tech-section">
-        <h4 data-fr="DevOps &amp; CI/CD" data-en="DevOps &amp; CI/CD">DevOps &amp; CI/CD</h4>
-        <div class="tech-chips">
-          <span class="chip">Docker</span><span class="chip">GitHub Actions</span><span class="chip">Jenkins</span><span class="chip">ArgoCD</span><span class="chip">Prometheus</span>
-        </div>
-      </div>
+      <div class="tech-section"><h4 data-fr="DevOps &amp; CI/CD" data-en="DevOps &amp; CI/CD">DevOps &amp; CI/CD</h4><div class="tech-chips"><span class="chip">Docker</span><span class="chip">GitHub Actions</span><span class="chip">Jenkins</span><span class="chip">ArgoCD</span><span class="chip">Prometheus</span></div></div>
       <div class="divider"></div>
-      <div class="tech-section">
-        <h4 data-fr="Données &amp; Intégration" data-en="Data &amp; Integration">Données &amp; Intégration</h4>
-        <div class="tech-chips">
-          <span class="chip">Kafka</span><span class="chip">PostgreSQL</span><span class="chip">Redis</span><span class="chip">MongoDB</span><span class="chip">Apache Camel</span>
-        </div>
-      </div>
+      <div class="tech-section"><h4 data-fr="Données &amp; Intégration" data-en="Data &amp; Integration">Données &amp; Intégration</h4><div class="tech-chips"><span class="chip">Kafka</span><span class="chip">PostgreSQL</span><span class="chip">Redis</span><span class="chip">MongoDB</span><span class="chip">Apache Camel</span></div></div>
     </div>
   </div>
 </section>
@@ -708,12 +616,8 @@
     <div class="why-visual">
       <div class="circle-bg"></div>
       <div class="center-logo-big">F</div>
-      <div class="orbit-item">⚡</div>
-      <div class="orbit-item">☁️</div>
-      <div class="orbit-item">🔄</div>
-      <div class="orbit-item">🔗</div>
-      <div class="orbit-item">🚀</div>
-      <div class="orbit-item">💡</div>
+      <div class="orbit-item">⚡</div><div class="orbit-item">☁️</div><div class="orbit-item">🔄</div>
+      <div class="orbit-item">🔗</div><div class="orbit-item">🚀</div><div class="orbit-item">💡</div>
     </div>
     <div>
       <div class="section-header reveal">
@@ -721,34 +625,10 @@
         <h2 class="section-title" data-fr="Ce qui nous distingue" data-en="What Sets Us Apart">Ce qui nous distingue</h2>
       </div>
       <div class="why-points">
-        <div class="why-point reveal">
-          <div class="why-point-icon">🎯</div>
-          <div>
-            <h4 data-fr="Expertise locale, vision globale" data-en="Local Expertise, Global Vision">Expertise locale, vision globale</h4>
-            <p data-fr="Basés à Montréal, nous comprenons le marché québécois et canadien tout en appliquant les meilleures pratiques mondiales." data-en="Based in Montreal, we understand the Quebec and Canadian market while applying global best practices.">Basés à Montréal, nous comprenons le marché québécois et canadien tout en appliquant les meilleures pratiques mondiales.</p>
-          </div>
-        </div>
-        <div class="why-point reveal reveal-delay-1">
-          <div class="why-point-icon">🤝</div>
-          <div>
-            <h4 data-fr="Partenariat, pas seulement prestation" data-en="Partnership, Not Just Service">Partenariat, pas seulement prestation</h4>
-            <p data-fr="Nous nous impliquons comme partenaires de votre succès — vos objectifs deviennent les nôtres à chaque projet." data-en="We engage as partners in your success — your goals become ours on every project.">Nous nous impliquons comme partenaires de votre succès — vos objectifs deviennent les nôtres à chaque projet.</p>
-          </div>
-        </div>
-        <div class="why-point reveal reveal-delay-2">
-          <div class="why-point-icon">⚙️</div>
-          <div>
-            <h4 data-fr="Technologies de pointe" data-en="Cutting-Edge Technologies">Technologies de pointe</h4>
-            <p data-fr="Notre équipe est formée en continu sur les dernières technologies cloud-native, IA et DevOps pour vous offrir les meilleures solutions." data-en="Our team is continuously trained on the latest cloud-native, AI, and DevOps technologies to deliver the best solutions.">Notre équipe est formée en continu sur les dernières technologies cloud-native, IA et DevOps pour vous offrir les meilleures solutions.</p>
-          </div>
-        </div>
-        <div class="why-point reveal">
-          <div class="why-point-icon">🇨🇦</div>
-          <div>
-            <h4 data-fr="Bilingue &amp; Multiculturel" data-en="Bilingual &amp; Multicultural">Bilingue &amp; Multiculturel</h4>
-            <p data-fr="Équipe bilingue français/anglais, sensible aux enjeux culturels du marché canadien pour un service sans friction." data-en="Bilingual French/English team, attuned to cultural nuances of the Canadian market for seamless service.">Équipe bilingue français/anglais, sensible aux enjeux culturels du marché canadien pour un service sans friction.</p>
-          </div>
-        </div>
+        <div class="why-point reveal"><div class="why-point-icon">🎯</div><div><h4 data-fr="Expertise locale, vision globale" data-en="Local Expertise, Global Vision">Expertise locale, vision globale</h4><p data-fr="Basés à Montréal, nous comprenons le marché québécois et canadien tout en appliquant les meilleures pratiques mondiales." data-en="Based in Montreal, we understand the Quebec and Canadian market while applying global best practices.">Basés à Montréal, nous comprenons le marché québécois et canadien tout en appliquant les meilleures pratiques mondiales.</p></div></div>
+        <div class="why-point reveal reveal-delay-1"><div class="why-point-icon">🤝</div><div><h4 data-fr="Partenariat, pas seulement prestation" data-en="Partnership, Not Just Service">Partenariat, pas seulement prestation</h4><p data-fr="Nous nous impliquons comme partenaires de votre succès — vos objectifs deviennent les nôtres à chaque projet." data-en="We engage as partners in your success — your goals become ours on every project.">Nous nous impliquons comme partenaires de votre succès — vos objectifs deviennent les nôtres à chaque projet.</p></div></div>
+        <div class="why-point reveal reveal-delay-2"><div class="why-point-icon">⚙️</div><div><h4 data-fr="Technologies de pointe" data-en="Cutting-Edge Technologies">Technologies de pointe</h4><p data-fr="Notre équipe est formée en continu sur les dernières technologies cloud-native, IA et DevOps pour vous offrir les meilleures solutions." data-en="Our team is continuously trained on the latest cloud-native, AI, and DevOps technologies to deliver the best solutions.">Notre équipe est formée en continu sur les dernières technologies cloud-native, IA et DevOps pour vous offrir les meilleures solutions.</p></div></div>
+        <div class="why-point reveal"><div class="why-point-icon">🇨🇦</div><div><h4 data-fr="Bilingue &amp; Multiculturel" data-en="Bilingual &amp; Multicultural">Bilingue &amp; Multiculturel</h4><p data-fr="Équipe bilingue français/anglais, sensible aux enjeux culturels du marché canadien pour un service sans friction." data-en="Bilingual French/English team, attuned to cultural nuances of the Canadian market for seamless service.">Équipe bilingue français/anglais, sensible aux enjeux culturels du marché canadien pour un service sans friction.</p></div></div>
       </div>
     </div>
   </div>
@@ -778,30 +658,16 @@
     <div class="section-header reveal" style="text-align:center;">
       <span class="section-label" data-fr="Démarrons ensemble" data-en="Let's Start Together">Démarrons ensemble</span>
       <h2 class="section-title" data-fr="Parlons de votre projet" data-en="Let's Talk About Your Project">Parlons de votre projet</h2>
-      <p class="section-sub" style="margin:0 auto;" data-fr="Dites-nous ce que vous construisez. Notre équipe reviendra vers vous sous 24h." data-en="Tell us what you're building. Our team will get back to you within 24 hours.">
-        Dites-nous ce que vous construisez. Notre équipe reviendra vers vous sous 24h.
-      </p>
+      <p class="section-sub" style="margin:0 auto;" data-fr="Dites-nous ce que vous construisez. Notre équipe reviendra vers vous sous 24h." data-en="Tell us what you're building. Our team will get back to you within 24 hours.">Dites-nous ce que vous construisez. Notre équipe reviendra vers vous sous 24h.</p>
     </div>
     <div class="contact-card reveal">
       <form id="contactForm" onsubmit="handleForm(event)">
         <div class="form-row">
-          <div class="form-group">
-            <label data-fr="Prénom" data-en="First Name">Prénom</label>
-            <input type="text" name="first_name" placeholder="Jean" required/>
-          </div>
-          <div class="form-group">
-            <label data-fr="Nom" data-en="Last Name">Nom</label>
-            <input type="text" name="last_name" placeholder="Tremblay" required/>
-          </div>
+          <div class="form-group"><label data-fr="Prénom" data-en="First Name">Prénom</label><input type="text" name="first_name" placeholder="Jean" required/></div>
+          <div class="form-group"><label data-fr="Nom" data-en="Last Name">Nom</label><input type="text" name="last_name" placeholder="Tremblay" required/></div>
         </div>
-        <div class="form-group">
-          <label>Email</label>
-          <input type="email" name="from_email" placeholder="jean@entreprise.com" required/>
-        </div>
-        <div class="form-group">
-          <label data-fr="Entreprise" data-en="Company">Entreprise</label>
-          <input type="text" name="company" placeholder="Votre Entreprise Inc."/>
-        </div>
+        <div class="form-group"><label>Email</label><input type="email" name="from_email" placeholder="jean@entreprise.com" required/></div>
+        <div class="form-group"><label data-fr="Entreprise" data-en="Company">Entreprise</label><input type="text" name="company" placeholder="Votre Entreprise Inc."/></div>
         <div class="form-group">
           <label data-fr="Service recherché" data-en="Service Needed">Service recherché</label>
           <select name="service">
@@ -814,35 +680,14 @@
             <option data-fr="Conseil &amp; Architecture" data-en="Consulting &amp; Architecture">Conseil &amp; Architecture</option>
           </select>
         </div>
-        <div class="form-group">
-          <label data-fr="Décrivez votre projet" data-en="Describe Your Project">Décrivez votre projet</label>
-          <textarea name="message" placeholder="..." required></textarea>
-        </div>
+        <div class="form-group"><label data-fr="Décrivez votre projet" data-en="Describe Your Project">Décrivez votre projet</label><textarea name="message" placeholder="..." required></textarea></div>
         <button type="submit" class="form-submit" data-fr="Envoyer ma demande →" data-en="Send My Request →">Envoyer ma demande →</button>
       </form>
     </div>
     <div class="contact-info reveal">
-      <div class="contact-item">
-        <div class="contact-item-icon">📍</div>
-        <div class="contact-item-text">
-          <span class="ci-label" data-fr="Localisation" data-en="Location">Localisation</span>
-          <span class="ci-val">Montréal, Québec</span>
-        </div>
-      </div>
-      <div class="contact-item">
-        <div class="contact-item-icon">✉️</div>
-        <div class="contact-item-text">
-          <span class="ci-label">Email</span>
-          <span class="ci-val">contact@foko.ca</span>
-        </div>
-      </div>
-      <div class="contact-item">
-        <div class="contact-item-icon">📞</div>
-        <div class="contact-item-text">
-          <span class="ci-label" data-fr="Téléphone" data-en="Phone">Téléphone</span>
-          <span class="ci-val">+1 (438) 924-2652</span>
-        </div>
-      </div>
+      <div class="contact-item"><div class="contact-item-icon">📍</div><div class="contact-item-text"><span class="ci-label" data-fr="Localisation" data-en="Location">Localisation</span><span class="ci-val">Montréal, Québec</span></div></div>
+      <div class="contact-item"><div class="contact-item-icon">✉️</div><div class="contact-item-text"><span class="ci-label">Email</span><span class="ci-val">contact@foko.ca</span></div></div>
+      <div class="contact-item"><div class="contact-item-icon">📞</div><div class="contact-item-text"><span class="ci-label" data-fr="Téléphone" data-en="Phone">Téléphone</span><span class="ci-val">+1 (438) 924-2652</span></div></div>
     </div>
   </div>
 </section>
@@ -850,30 +695,19 @@
 <!-- FOOTER -->
 <footer>
   <div class="footer-brand">
-    <a href="#" style="display:inline-block; margin-bottom:0.5rem;">
-      <svg viewBox="0 0 200 50" xmlns="http://www.w3.org/2000/svg" style="height:62px;width:auto;">
+    <a href="#" style="display:inline-block;margin-bottom:0.5rem;">
+      <svg viewBox="0 0 200 50" xmlns="http://www.w3.org/2000/svg" style="height:60px;width:auto;">
         <defs>
-          <linearGradient id="fshieldBlue" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:#5AABF5;stop-opacity:1" />
-            <stop offset="100%" style="stop-color:#0D3A7A;stop-opacity:1" />
-          </linearGradient>
-          <linearGradient id="fshieldSilver" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:#E0E8F4;stop-opacity:1" />
-            <stop offset="100%" style="stop-color:#5A6E8A;stop-opacity:1" />
-          </linearGradient>
-          <linearGradient id="ftextGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" style="stop-color:#7AB8F5;stop-opacity:1" />
-            <stop offset="100%" style="stop-color:#3A7AC8;stop-opacity:1" />
-          </linearGradient>
+          <linearGradient id="fshieldBlue" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#5AABF5;stop-opacity:1"/><stop offset="100%" style="stop-color:#0D3A7A;stop-opacity:1"/></linearGradient>
+          <linearGradient id="fshieldSilver" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#E0E8F4;stop-opacity:1"/><stop offset="100%" style="stop-color:#5A6E8A;stop-opacity:1"/></linearGradient>
+          <linearGradient id="ftextGrad" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:#7AB8F5;stop-opacity:1"/><stop offset="100%" style="stop-color:#3A7AC8;stop-opacity:1"/></linearGradient>
         </defs>
-        <polygon points="4,4 28,4 16,46" fill="url(#fshieldBlue)" />
-        <polygon points="10,12 28,4 18,36" fill="url(#fshieldSilver)" opacity="0.85" />
+        <polygon points="4,4 28,4 16,46" fill="url(#fshieldBlue)"/>
+        <polygon points="10,12 28,4 18,36" fill="url(#fshieldSilver)" opacity="0.85"/>
         <text x="34" y="36" font-family="'Syne','Arial Black',sans-serif" font-weight="800" font-size="30" fill="url(#ftextGrad)" letter-spacing="-0.5">SNF</text>
       </svg>
     </a>
-    <p data-fr="Solutions numériques innovantes pour accélérer votre transformation digitale. Basés à Montréal, actifs partout au Canada." data-en="Innovative digital solutions to accelerate your digital transformation. Based in Montreal, active across Canada.">
-      Solutions numériques innovantes pour accélérer votre transformation digitale. Basés à Montréal, actifs partout au Canada.
-    </p>
+    <p data-fr="Solutions numériques innovantes pour accélérer votre transformation digitale. Basés à Montréal, actifs partout au Canada." data-en="Innovative digital solutions to accelerate your digital transformation. Based in Montreal, active across Canada.">Solutions numériques innovantes pour accélérer votre transformation digitale. Basés à Montréal, actifs partout au Canada.</p>
   </div>
   <div class="footer-col">
     <h5 data-fr="Services" data-en="Services">Services</h5>
@@ -888,9 +722,9 @@
   <div class="footer-col">
     <h5 data-fr="Entreprise" data-en="Company">Entreprise</h5>
     <ul>
-      <li><a href="#why"      data-fr="À propos"       data-en="About Us">À propos</a></li>
+      <li><a href="#why" data-fr="À propos" data-en="About Us">À propos</a></li>
       <li><a href="#approach" data-fr="Notre approche" data-en="Our Approach">Notre approche</a></li>
-      <li><a href="#sectors"  data-fr="Secteurs"       data-en="Sectors">Secteurs</a></li>
+      <li><a href="#sectors" data-fr="Secteurs" data-en="Sectors">Secteurs</a></li>
     </ul>
   </div>
   <div class="footer-col">
@@ -899,113 +733,106 @@
       <li><a href="mailto:contact@foko.ca">contact@foko.ca</a></li>
       <li><a href="tel:+14389242652">+1 (438) 924-2652</a></li>
       <li><a href="#">Montréal, QC</a></li>
-      <li><a href="#">LinkedIn</a></li>
+      <li><a href="https://www.linkedin.com/in/fabrice-foko-61604baa/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
     </ul>
   </div>
 </footer>
 <div class="footer-bottom">
   <p>© 2025 <span class="footer-accent">Solutions Numériques Foko</span>. <span data-fr="Tous droits réservés." data-en="All rights reserved.">Tous droits réservés.</span></p>
-  <p style="color:var(--muted);font-size:0.8rem;" data-fr="Fait avec ❤️ à Montréal" data-en="Made with ❤️ in Montreal">Fait avec ❤️ à Montréal</p>
+  <p style="color:var(--muted);font-size:0.78rem;" data-fr="Fait avec ❤️ à Montréal" data-en="Made with ❤️ in Montreal">Fait avec ❤️ à Montréal</p>
 </div>
 
 <script>
-  let currentLang = 'fr';
+let currentLang = 'fr';
 
-  function setLang(lang) {
-    currentLang = lang;
-    document.documentElement.lang = lang;
-    document.querySelectorAll('.lang-btn').forEach(b => {
-      b.classList.toggle('active', b.textContent.trim().toLowerCase() === lang);
-    });
-    document.querySelectorAll('[data-fr]').forEach(el => {
-      const txt = el.getAttribute('data-' + lang);
-      if (txt !== null) {
-        if (el.tagName === 'INPUT' || el.tagName === 'BUTTON') el.value = txt;
-        el.textContent = txt;
-      }
-    });
-    document.querySelectorAll('select option[data-fr]').forEach(opt => {
-      const txt = opt.getAttribute('data-' + lang);
-      if (txt) opt.textContent = txt;
-    });
-    const submitBtn = document.querySelector('.form-submit');
-    if (submitBtn) submitBtn.textContent = submitBtn.getAttribute('data-' + lang);
-  }
-
-  const revealObserver = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.12 });
-  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
-  window.addEventListener('scroll', () => {
-    document.querySelector('nav').style.background =
-      window.scrollY > 60 ? 'rgba(11,17,32,0.97)' : 'rgba(11,17,32,0.85)';
+function setLang(lang) {
+  currentLang = lang;
+  document.documentElement.lang = lang;
+  document.querySelectorAll('.lang-btn').forEach(b => {
+    b.classList.toggle('active', b.textContent.trim().toLowerCase() === lang);
   });
-
-  const EMAILJS_PUBLIC_KEY  = 'rAQJEd8tLLU0dXw7e';
-  const EMAILJS_SERVICE_ID  = 'service_6pu4n0r';
-  const EMAILJS_TEMPLATE_ID = 'template_te28lpn';
-
-  (function() {
-    var script = document.createElement('script');
-    script.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
-    script.onload = function() { emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY }); };
-    document.head.appendChild(script);
-  })();
-
-  async function handleForm(e) {
-    e.preventDefault();
-    const form = e.target;
-    const btn  = form.querySelector('.form-submit');
-    const originalText = btn.textContent;
-
-    const firstName = form.querySelector('[name="first_name"]').value.trim();
-    const lastName  = form.querySelector('[name="last_name"]').value.trim();
-    const email     = form.querySelector('[name="from_email"]').value.trim();
-    const company   = form.querySelector('[name="company"]').value.trim();
-    const service   = form.querySelector('[name="service"]').value;
-    const message   = form.querySelector('[name="message"]').value.trim();
-
-    btn.textContent = currentLang === 'fr' ? 'Envoi en cours…' : 'Sending…';
-    btn.disabled = true;
-    btn.style.opacity = '0.75';
-
-    const templateParams = {
-      from_name  : firstName + ' ' + lastName,
-      from_email : email,
-      company    : company || '—',
-      service    : service,
-      message    : message,
-      to_email   : 'contact.aivisionworld@gmail.com'
-    };
-
-    try {
-      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams);
-      btn.textContent = currentLang === 'fr' ? 'Message envoyé ! ✓' : 'Message sent! ✓';
-      btn.style.background = '#1DB954';
-      btn.style.color = '#fff';
-      btn.style.opacity = '1';
-      form.reset();
-      setTimeout(() => {
-        btn.textContent = originalText;
-        btn.style.background = '';
-        btn.style.color = '';
-        btn.disabled = false;
-      }, 4000);
-    } catch (err) {
-      console.error('EmailJS error:', err);
-      btn.textContent = currentLang === 'fr' ? 'Erreur — réessayez' : 'Error — please retry';
-      btn.style.background = '#e53e3e';
-      btn.style.color = '#fff';
-      btn.style.opacity = '1';
-      setTimeout(() => {
-        btn.textContent = originalText;
-        btn.style.background = '';
-        btn.style.color = '';
-        btn.disabled = false;
-      }, 4000);
+  document.querySelectorAll('[data-fr]').forEach(el => {
+    const txt = el.getAttribute('data-' + lang);
+    if (txt !== null) {
+      if (el.tagName === 'INPUT' || el.tagName === 'BUTTON') el.value = txt;
+      el.textContent = txt;
     }
+  });
+  document.querySelectorAll('select option[data-fr]').forEach(opt => {
+    const txt = opt.getAttribute('data-' + lang);
+    if (txt) opt.textContent = txt;
+  });
+  const submitBtn = document.querySelector('.form-submit');
+  if (submitBtn) submitBtn.textContent = submitBtn.getAttribute('data-' + lang);
+}
+
+/* ── HAMBURGER ── */
+function toggleMenu() {
+  const menu = document.getElementById('mobileMenu');
+  const btn  = document.getElementById('hamburger');
+  menu.classList.toggle('open');
+  btn.classList.toggle('open');
+}
+function closeMenu() {
+  document.getElementById('mobileMenu').classList.remove('open');
+  document.getElementById('hamburger').classList.remove('open');
+}
+document.addEventListener('click', e => {
+  const menu = document.getElementById('mobileMenu');
+  const btn  = document.getElementById('hamburger');
+  if (menu.classList.contains('open') && !menu.contains(e.target) && !btn.contains(e.target)) closeMenu();
+});
+
+/* ── SCROLL REVEAL ── */
+const revealObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+/* ── NAV SCROLL ── */
+window.addEventListener('scroll', () => {
+  document.querySelector('nav').style.background =
+    window.scrollY > 60 ? 'rgba(11,17,32,0.97)' : 'rgba(11,17,32,0.85)';
+});
+
+/* ── EMAILJS ── */
+const EMAILJS_PUBLIC_KEY  = 'rAQJEd8tLLU0dXw7e';
+const EMAILJS_SERVICE_ID  = 'service_6pu4n0r';
+const EMAILJS_TEMPLATE_ID = 'template_te28lpn';
+
+(function() {
+  var s = document.createElement('script');
+  s.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
+  s.onload = function() { emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY }); };
+  document.head.appendChild(s);
+})();
+
+async function handleForm(e) {
+  e.preventDefault();
+  const form = e.target;
+  const btn  = form.querySelector('.form-submit');
+  const originalText = btn.textContent;
+  const firstName = form.querySelector('[name="first_name"]').value.trim();
+  const lastName  = form.querySelector('[name="last_name"]').value.trim();
+  const email     = form.querySelector('[name="from_email"]').value.trim();
+  const company   = form.querySelector('[name="company"]').value.trim();
+  const service   = form.querySelector('[name="service"]').value;
+  const message   = form.querySelector('[name="message"]').value.trim();
+  btn.textContent = currentLang === 'fr' ? 'Envoi en cours…' : 'Sending…';
+  btn.disabled = true; btn.style.opacity = '0.75';
+  const templateParams = { from_name: firstName+' '+lastName, from_email: email, company: company||'—', service, message, to_email: 'contact.aivisionworld@gmail.com' };
+  try {
+    await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams);
+    btn.textContent = currentLang === 'fr' ? 'Message envoyé ! ✓' : 'Message sent! ✓';
+    btn.style.background = '#1DB954'; btn.style.color = '#fff'; btn.style.opacity = '1';
+    form.reset();
+    setTimeout(() => { btn.textContent = originalText; btn.style.background = ''; btn.style.color = ''; btn.disabled = false; }, 4000);
+  } catch (err) {
+    btn.textContent = currentLang === 'fr' ? 'Erreur — réessayez' : 'Error — please retry';
+    btn.style.background = '#e53e3e'; btn.style.color = '#fff'; btn.style.opacity = '1';
+    setTimeout(() => { btn.textContent = originalText; btn.style.background = ''; btn.style.color = ''; btn.disabled = false; }, 4000);
   }
+}
 </script>
 </body>
 </html>
