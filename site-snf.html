@@ -74,8 +74,12 @@
     font-size: 0.85rem; font-weight: 600;
     cursor: pointer; transition: all 0.2s;
     font-family: 'DM Sans', sans-serif; text-decoration: none;
+    white-space: nowrap;
   }
   .nav-cta:hover { background: var(--accent); color: #0B1120; }
+
+  /* SNF Logo */
+  .snf-logo-svg { height: 74px; width: auto; display: block; }
 
   /* HERO */
   #hero {
@@ -87,8 +91,9 @@
   .hero-bg {
     position: absolute; inset: 0; z-index: 0;
     background:
-      radial-gradient(ellipse 80% 60% at 70% 40%, rgba(0,148,255,0.12) 0%, transparent 60%),
-      radial-gradient(ellipse 50% 50% at 20% 80%, rgba(0,212,180,0.10) 0%, transparent 60%);
+      radial-gradient(ellipse 70% 60% at 75% 35%, rgba(0,148,255,0.10) 0%, transparent 65%),
+      radial-gradient(ellipse 55% 45% at 15% 75%, rgba(0,212,180,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 40% at 50% 50%, rgba(123,92,245,0.05) 0%, transparent 60%);
   }
   .hero-grid {
     position: absolute; inset: 0; z-index: 0;
@@ -98,30 +103,30 @@
     background-size: 60px 60px;
     mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent);
   }
+
+  /* floating particles */
+  .particle {
+    position:absolute; border-radius:50%; pointer-events:none; z-index:0;
+    animation:float 8s ease-in-out infinite;
+  }
+  .p1{width:4px;height:4px;background:var(--accent);opacity:0.6;top:20%;left:15%;animation-delay:0s;}
+  .p2{width:3px;height:3px;background:var(--accent2);opacity:0.5;top:60%;left:80%;animation-delay:2s;}
+  .p3{width:5px;height:5px;background:#7B5CF5;opacity:0.4;top:40%;left:60%;animation-delay:4s;}
+  .p4{width:3px;height:3px;background:var(--accent);opacity:0.5;top:75%;left:30%;animation-delay:1s;}
+  .p5{width:4px;height:4px;background:var(--accent2);opacity:0.4;top:15%;left:70%;animation-delay:3s;}
+  @keyframes float{
+    0%,100%{transform:translateY(0) translateX(0)}
+    33%{transform:translateY(-18px) translateX(8px)}
+    66%{transform:translateY(8px) translateX(-10px)}
+  }
   .hero-content { position: relative; z-index: 1; max-width: 780px; }
-  .hero-badge {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: rgba(0,212,180,0.1);
-    border: 1px solid rgba(0,212,180,0.3);
-    color: var(--accent);
-    padding: 6px 16px; border-radius: 20px;
-    font-size: 0.8rem; font-weight: 600; letter-spacing: 0.08em;
-    text-transform: uppercase; margin-bottom: 1.5rem;
-    animation: fadeUp 0.6s ease both;
-  }
-  .hero-badge::before {
-    content: ''; width: 6px; height: 6px;
-    background: var(--accent); border-radius: 50%;
-    animation: pulse 2s infinite;
-  }
-  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
-  @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
 
   h1.hero-title {
-    font-size: clamp(2.4rem, 6vw, 4.2rem);
+    font-size: clamp(1.5rem, 4vw, 3.2rem);
     font-weight: 800; letter-spacing: -0.03em;
-    line-height: 1.05; margin-bottom: 1.5rem;
+    line-height: 1.05; margin-bottom: 1.5rem; margin-top: 3rem;
     animation: fadeUp 0.6s 0.1s ease both;
+    word-break: break-word;
   }
   .hero-title .gradient-text {
     background: linear-gradient(135deg, var(--accent), var(--accent2));
@@ -129,7 +134,7 @@
     background-clip: text;
   }
   .hero-sub {
-    font-size: 1.1rem; color: var(--muted); max-width: 560px;
+    font-size: clamp(0.9rem, 2vw, 1.1rem); color: var(--muted); max-width: 560px;
     margin-bottom: 2.5rem; font-weight: 300; line-height: 1.8;
     animation: fadeUp 0.6s 0.2s ease both;
   }
@@ -139,9 +144,9 @@
   }
   .btn-primary {
     background: linear-gradient(135deg, var(--accent), var(--accent2));
-    color: #0B1120; padding: 14px 32px;
+    color: #0B1120; padding: 12px 24px;
     border-radius: 8px; font-weight: 700;
-    font-size: 0.95rem; text-decoration: none;
+    font-size: clamp(0.85rem, 2vw, 0.95rem); text-decoration: none;
     transition: transform 0.2s, box-shadow 0.2s;
     font-family: 'DM Sans', sans-serif;
     display: inline-flex; align-items: center; gap: 8px;
@@ -150,24 +155,24 @@
   .btn-outline {
     background: transparent; color: var(--white);
     border: 1px solid rgba(255,255,255,0.25);
-    padding: 14px 32px; border-radius: 8px;
-    font-weight: 500; font-size: 0.95rem;
+    padding: 12px 24px; border-radius: 8px;
+    font-weight: 500; font-size: clamp(0.85rem, 2vw, 0.95rem);
     text-decoration: none; transition: all 0.2s;
     font-family: 'DM Sans', sans-serif;
   }
   .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
   .hero-stats {
-    display: flex; gap: 3rem; margin-top: 4rem;
+    display: flex; gap: 2rem; margin-top: 3rem;
     animation: fadeUp 0.6s 0.4s ease both;
     padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.08);
     flex-wrap: wrap;
   }
   .stat-item { display: flex; flex-direction: column; gap: 4px; }
   .stat-num {
-    font-family: 'Syne', sans-serif; font-size: 2rem;
+    font-family: 'Syne', sans-serif; font-size: clamp(1.4rem, 3vw, 2rem);
     font-weight: 800; color: var(--accent);
   }
-  .stat-label { font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+  .stat-label { font-size: clamp(0.65rem, 1.5vw, 0.8rem); color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
   .hero-scroll-hint {
     position: absolute; bottom: 32px; left: 50%;
     transform: translateX(-50%);
@@ -177,37 +182,41 @@
     z-index: 1;
   }
   .scroll-arrow { width: 1px; height: 32px; background: linear-gradient(var(--accent), transparent); }
+
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
+  @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
   @keyframes bounceY { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(6px)} }
 
   /* SECTIONS */
-  section { padding: 100px 5%; }
+  section { padding: clamp(60px, 8vw, 100px) 5%; }
   .section-label {
     font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em;
     text-transform: uppercase; color: var(--accent);
     margin-bottom: 1rem; display: block;
   }
   .section-title {
-    font-size: clamp(1.8rem, 4vw, 3rem);
+    font-size: clamp(1.4rem, 3.5vw, 3rem);
     font-weight: 800; letter-spacing: -0.02em;
     margin-bottom: 1.2rem;
+    word-break: break-word;
   }
   .section-sub {
-    color: var(--muted); font-size: 1.05rem; max-width: 600px;
+    color: var(--muted); font-size: clamp(0.9rem, 2vw, 1.05rem); max-width: 600px;
     line-height: 1.8; font-weight: 300;
   }
-  .section-header { margin-bottom: 4rem; }
+  .section-header { margin-bottom: clamp(2rem, 5vw, 4rem); }
 
   /* SERVICES */
   #services { background: var(--c2); }
   .services-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
     gap: 1.5rem;
   }
   .service-card {
     background: var(--card-bg);
     border: 1px solid var(--border);
-    border-radius: 16px; padding: 2rem;
+    border-radius: 16px; padding: clamp(1.2rem, 3vw, 2rem);
     position: relative; overflow: hidden;
     transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
     cursor: default;
@@ -228,8 +237,8 @@
     display: flex; align-items: center; justify-content: center;
     font-size: 1.4rem; margin-bottom: 1.4rem;
   }
-  .service-title { font-family: 'Syne', sans-serif; font-size: 1.15rem; font-weight: 700; margin-bottom: 0.7rem; }
-  .service-desc { color: var(--muted); font-size: 0.92rem; line-height: 1.75; }
+  .service-title { font-family: 'Syne', sans-serif; font-size: clamp(1rem, 2vw, 1.15rem); font-weight: 700; margin-bottom: 0.7rem; }
+  .service-desc { color: var(--muted); font-size: clamp(0.85rem, 1.5vw, 0.92rem); line-height: 1.75; }
   .service-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 1.2rem; }
   .tag {
     font-size: 0.72rem; font-weight: 500;
@@ -255,11 +264,11 @@
     width: 32px; height: 32px; border-radius: 8px;
     display: flex; align-items: center; justify-content: center; flex-shrink: 0;
   }
-  .step-body h4 { font-family:'Syne',sans-serif; font-weight:700; margin-bottom:4px; font-size:0.95rem; }
-  .step-body p { color: var(--muted); font-size: 0.88rem; line-height:1.7; }
+  .step-body h4 { font-family:'Syne',sans-serif; font-weight:700; margin-bottom:4px; font-size:clamp(0.85rem, 1.8vw, 0.95rem); }
+  .step-body p { color: var(--muted); font-size: clamp(0.82rem, 1.5vw, 0.88rem); line-height:1.7; }
   .approach-right {
     background: var(--card-bg); border: 1px solid var(--border);
-    border-radius: 16px; padding: 2.5rem;
+    border-radius: 16px; padding: clamp(1.2rem, 3vw, 2.5rem);
     display: flex; flex-direction: column; gap: 1.5rem;
   }
   .tech-section h4 {
@@ -270,30 +279,38 @@
   .tech-chips { display: flex; flex-wrap: wrap; gap: 8px; }
   .chip {
     background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
-    padding: 5px 14px; border-radius: 20px; font-size: 0.82rem; color: #ccd6f6;
+    padding: 5px 14px; border-radius: 20px; font-size: clamp(0.75rem, 1.5vw, 0.82rem); color: #ccd6f6;
   }
   .divider { height: 1px; background: rgba(255,255,255,0.06); }
 
-  /* WHY FOKO */
+  /* WHY */
   #why { background: var(--c3); }
   .why-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 5rem; align-items: center; }
   .why-visual { position: relative; height: 400px; }
+  @keyframes spinSlow { from{transform:translate(-50%,-50%) rotate(0deg)} to{transform:translate(-50%,-50%) rotate(360deg)} }
   .circle-bg {
     position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
-    width: 320px; height: 320px; border-radius: 50%; border: 1px solid rgba(0,212,180,0.15);
+    width: 340px; height: 340px; border-radius: 50%;
+    border: 1px solid rgba(0,212,180,0.12);
+    animation: spinSlow 30s linear infinite;
   }
-  .circle-bg::before { content: ''; position: absolute; inset: 30px; border-radius: 50%; border: 1px solid rgba(0,148,255,0.15); }
-  .circle-bg::after  { content: ''; position: absolute; inset: 70px; border-radius: 50%; border: 1px solid rgba(0,212,180,0.2); }
+  .circle-bg::before {
+    content: ''; position: absolute; inset: 32px; border-radius: 50%;
+    border: 1px dashed rgba(0,148,255,0.12);
+    animation: spinSlow 20s linear infinite reverse;
+  }
+  .circle-bg::after  { content: ''; position: absolute; inset: 72px; border-radius: 50%; border: 1px solid rgba(0,212,180,0.18); }
   .center-logo-big {
     position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
-    width: 100px; height: 100px;
+    width: 105px; height: 105px;
     background: linear-gradient(135deg, var(--accent), var(--accent2));
-    border-radius: 24px; display: flex; align-items: center; justify-content: center;
-    font-family: 'Syne', sans-serif; font-size: 2.5rem; font-weight: 800;
-    color: #0B1120; z-index: 2; box-shadow: 0 0 60px rgba(0,212,180,0.3);
+    border-radius: 26px; display: flex; align-items: center; justify-content: center;
+    font-family: 'Syne', sans-serif; font-size: 2.6rem; font-weight: 800;
+    color: #0B1120; z-index: 2;
+    box-shadow: 0 0 0 1px rgba(0,212,180,0.3), 0 0 60px rgba(0,212,180,0.25), 0 0 100px rgba(0,148,255,0.15);
   }
   .orbit-item {
-    position: absolute; width: 44px; height: 44px;
+    position: absolute; width: 44px; height: 36px;
     background: var(--c2); border: 1px solid var(--border);
     border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
   }
@@ -310,8 +327,8 @@
     border-left: 2px solid var(--accent); border-radius: 0 8px 8px 0;
   }
   .why-point-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 2px; }
-  .why-point h4 { font-family:'Syne',sans-serif; font-size:0.95rem; font-weight:700; margin-bottom:4px; }
-  .why-point p { color: var(--muted); font-size: 0.87rem; line-height:1.7; }
+  .why-point h4 { font-family:'Syne',sans-serif; font-size:clamp(0.85rem, 1.8vw, 0.95rem); font-weight:700; margin-bottom:4px; }
+  .why-point p { color: var(--muted); font-size: clamp(0.82rem, 1.5vw, 0.87rem); line-height:1.7; }
 
   /* SECTORS */
   #sectors { background: var(--c1); }
@@ -325,20 +342,16 @@
   .sector-card {
     background: linear-gradient(135deg, #0f172a, #1e293b);
     border: 1px solid rgba(0,212,180,0.15);
-    border-radius: 20px; padding: 1.8rem 1rem;
+    border-radius: 20px; padding: clamp(1.2rem, 3vw, 1.8rem) 1rem;
     text-align: center; cursor: default;
     transition: all 0.3s ease;
     display: flex; flex-direction: column; align-items: center; justify-content: center;
   }
-  .sector-card:hover {
-    background: white; color: #0f172a;
-    transform: translateY(-5px);
-    box-shadow: 0 12px 30px rgba(0,0,0,0.15);
-    border-color: white;
-  }
-  .sector-icon { font-size: 2.2rem; margin-bottom: 0.75rem; display: block; }
+  .sector-card:hover{background:#ffffff;border-color:#ffffff;transform:translateY(-5px);box-shadow:0 16px 40px rgba(0,0,0,0.25);}
+.sector-card:hover .sector-name{color:#060d1a;}
+  .sector-icon { font-size: clamp(1.6rem, 3vw, 2.2rem); margin-bottom: 0.75rem; display: block; }
   .sector-name {
-    font-family: 'Syne', sans-serif; font-size: 0.95rem; font-weight: 700;
+    font-family: 'Syne', sans-serif; font-size: clamp(0.75rem, 1.5vw, 0.95rem); font-weight: 700;
     color: var(--white); line-height: 1.3; transition: color 0.3s;
   }
   .sector-card:hover .sector-name { color: #0f172a; }
@@ -348,7 +361,7 @@
   .contact-wrapper { max-width: 680px; margin: 0 auto; text-align: center; }
   .contact-card {
     background: var(--card-bg); border: 1px solid var(--border);
-    border-radius: 20px; padding: 3rem; margin-top: 3rem; text-align: left;
+    border-radius: 20px; padding: clamp(1.5rem, 4vw, 3rem); margin-top: 3rem; text-align: left;
   }
   .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
   .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 1rem; }
@@ -371,7 +384,7 @@
     cursor: pointer; transition: all 0.2s; margin-top: 0.5rem;
   }
   .form-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,212,180,0.3); }
-  .contact-info { display: flex; justify-content: center; gap: 3rem; margin-top: 2.5rem; flex-wrap: wrap; }
+  .contact-info { display: flex; justify-content: center; gap: clamp(1rem, 4vw, 3rem); margin-top: 2.5rem; flex-wrap: wrap; }
   .contact-item { display: flex; gap: 10px; align-items: center; }
   .contact-item-icon {
     width: 38px; height: 38px;
@@ -400,6 +413,7 @@
   .footer-bottom {
     background: var(--c1); border-top: 1px solid rgba(255,255,255,0.05);
     padding: 1.2rem 5%; display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 0.5rem;
   }
   .footer-bottom p { color: var(--muted); font-size: 0.8rem; }
   .footer-accent { color: var(--accent); font-weight: 600; }
@@ -411,22 +425,32 @@
   .reveal-delay-2 { transition-delay: 0.2s; }
   .reveal-delay-3 { transition-delay: 0.3s; }
 
-  /* SNF Logo styles */
-  .snf-logo-svg { height: 85px; width: auto; display: block; }
-
   /* RESPONSIVE */
+  @media (max-width: 1024px) {
+    .snf-logo-svg { height: 60px; }
+  }
   @media (max-width: 900px) {
     .approach-grid, .why-grid { grid-template-columns: 1fr; }
     footer { grid-template-columns: 1fr 1fr; }
     .why-visual { display: none; }
     .sectors-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .snf-logo-svg { height: 50px; }
   }
   @media (max-width: 640px) {
+    :root { --nav-h: 60px; }
     .nav-links { display: none; }
     .form-row { grid-template-columns: 1fr; }
     footer { grid-template-columns: 1fr; }
-    .hero-stats { gap: 1.5rem; }
+    .hero-stats { gap: 1.2rem; }
     .sectors-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .snf-logo-svg { height: 36px; }
+    .nav-cta { padding: 6px 12px; font-size: 0.78rem; }
+    .contact-info { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  }
+  @media (max-width: 380px) {
+    .snf-logo-svg { height: 36px; }
+    .hero-stats { gap: 1rem; }
+    .stat-num { font-size: 1.2rem; }
   }
 </style>
 </head>
@@ -434,7 +458,6 @@
 
 <!-- NAV -->
 <nav>
-  <!-- SNF Logo SVG -->
   <a href="#" class="logo" style="gap:0;">
     <svg class="snf-logo-svg" viewBox="0 0 320 80" xmlns="http://www.w3.org/2000/svg">
       <defs>
@@ -457,35 +480,25 @@
           <stop offset="100%" style="stop-color:#0D3A7A;stop-opacity:0.3" />
         </linearGradient>
       </defs>
-
-      <!-- Shield / chevron shape (main blue) -->
       <polygon points="8,8 52,8 30,72" fill="url(#shieldBlue)" />
-      <!-- Silver accent layer -->
       <polygon points="18,20 52,8 32,56" fill="url(#shieldSilver)" opacity="0.85" />
-      <!-- Dark edge line -->
       <line x1="30" y1="72" x2="52" y2="8" stroke="#0D2A5A" stroke-width="1.5" opacity="0.4"/>
-
-      <!-- SNF text -->
       <text x="62" y="52" font-family="'Syne', 'Arial Black', sans-serif" font-weight="800"
             font-size="42" fill="url(#textGrad)" letter-spacing="-1">SNF</text>
-
-      <!-- Tagline -->
       <text x="62" y="67" font-family="'DM Sans', Arial, sans-serif" font-weight="400"
             font-style="italic" font-size="11" fill="#5A7099" letter-spacing="0.2">
         L'expertise numérique qui structure votre avenir
       </text>
-
-      <!-- Underline accent -->
       <line x1="62" y1="71" x2="315" y2="71" stroke="url(#underlineGrad)" stroke-width="1"/>
     </svg>
   </a>
 
   <ul class="nav-links">
-    <li><a href="#services"  data-fr="Services"        data-en="Services">Services</a></li>
-    <li><a href="#approach"  data-fr="Approche"         data-en="Approach">Approche</a></li>
-    <li><a href="#why"       data-fr="Pourquoi Nous"    data-en="Why Us">Pourquoi Nous</a></li>
-    <li><a href="#sectors"   data-fr="Secteurs"         data-en="Sectors">Secteurs</a></li>
-    <li><a href="#contact"   data-fr="Contact"          data-en="Contact">Contact</a></li>
+    <li><a href="#services"  data-fr="Services"       data-en="Services">Services</a></li>
+    <li><a href="#approach"  data-fr="Approche"        data-en="Approach">Approche</a></li>
+    <li><a href="#why"       data-fr="Pourquoi Nous"   data-en="Why Us">Pourquoi Nous</a></li>
+    <li><a href="#sectors"   data-fr="Secteurs"        data-en="Sectors">Secteurs</a></li>
+    <li><a href="#contact"   data-fr="Contact"         data-en="Contact">Contact</a></li>
   </ul>
   <div style="display:flex;align-items:center;gap:12px;">
     <div class="lang-toggle">
@@ -500,6 +513,11 @@
 <section id="hero">
   <div class="hero-bg"></div>
   <div class="hero-grid"></div>
+  <div class="particle p1"></div>
+  <div class="particle p2"></div>
+  <div class="particle p3"></div>
+  <div class="particle p4"></div>
+  <div class="particle p5"></div>
   <div class="hero-content">
     <h1 class="hero-title">
       <span data-fr="Accélérez votre" data-en="Accelerate your">Accélérez votre</span><br>
@@ -684,7 +702,7 @@
   </div>
 </section>
 
-<!-- WHY FOKO -->
+<!-- WHY -->
 <section id="why">
   <div class="why-grid">
     <div class="why-visual">
@@ -743,38 +761,14 @@
     <h2 class="section-title" data-fr="Nous intervenons dans votre secteur" data-en="We operate in your industry">Nous intervenons dans votre secteur</h2>
   </div>
   <div class="sectors-grid">
-    <div class="sector-card reveal">
-      <span class="sector-icon">🏦</span>
-      <div class="sector-name" data-fr="Finance &amp; Banque" data-en="Finance &amp; Banking">Finance &amp; Banque</div>
-    </div>
-    <div class="sector-card reveal">
-      <span class="sector-icon">🏥</span>
-      <div class="sector-name" data-fr="Santé" data-en="Healthcare">Santé</div>
-    </div>
-    <div class="sector-card reveal">
-      <span class="sector-icon">🛒</span>
-      <div class="sector-name" data-fr="Commerce &amp; Retail" data-en="Retail &amp; Commerce">Commerce &amp; Retail</div>
-    </div>
-    <div class="sector-card reveal">
-      <span class="sector-icon">📡</span>
-      <div class="sector-name" data-fr="Télécommunications" data-en="Telecommunications">Télécommunications</div>
-    </div>
-    <div class="sector-card reveal">
-      <span class="sector-icon">🏭</span>
-      <div class="sector-name" data-fr="Industrie" data-en="Manufacturing">Industrie</div>
-    </div>
-    <div class="sector-card reveal">
-      <span class="sector-icon">🎓</span>
-      <div class="sector-name" data-fr="Éducation" data-en="Education">Éducation</div>
-    </div>
-    <div class="sector-card reveal">
-      <span class="sector-icon">🏛️</span>
-      <div class="sector-name" data-fr="Secteur Public" data-en="Public Sector">Secteur Public</div>
-    </div>
-    <div class="sector-card reveal">
-      <span class="sector-icon">🚗</span>
-      <div class="sector-name" data-fr="Transport &amp; Logistique" data-en="Transport &amp; Logistics">Transport &amp; Logistique</div>
-    </div>
+    <div class="sector-card reveal"><span class="sector-icon">🏦</span><div class="sector-name" data-fr="Finance &amp; Banque" data-en="Finance &amp; Banking">Finance &amp; Banque</div></div>
+    <div class="sector-card reveal"><span class="sector-icon">🏥</span><div class="sector-name" data-fr="Santé" data-en="Healthcare">Santé</div></div>
+    <div class="sector-card reveal"><span class="sector-icon">🛒</span><div class="sector-name" data-fr="Commerce &amp; Retail" data-en="Retail &amp; Commerce">Commerce &amp; Retail</div></div>
+    <div class="sector-card reveal"><span class="sector-icon">📡</span><div class="sector-name" data-fr="Télécommunications" data-en="Telecommunications">Télécommunications</div></div>
+    <div class="sector-card reveal"><span class="sector-icon">🏭</span><div class="sector-name" data-fr="Industrie" data-en="Manufacturing">Industrie</div></div>
+    <div class="sector-card reveal"><span class="sector-icon">🎓</span><div class="sector-name" data-fr="Éducation" data-en="Education">Éducation</div></div>
+    <div class="sector-card reveal"><span class="sector-icon">🏛️</span><div class="sector-name" data-fr="Secteur Public" data-en="Public Sector">Secteur Public</div></div>
+    <div class="sector-card reveal"><span class="sector-icon">🚗</span><div class="sector-name" data-fr="Transport &amp; Logistique" data-en="Transport &amp; Logistics">Transport &amp; Logistique</div></div>
   </div>
 </section>
 
@@ -811,13 +805,13 @@
         <div class="form-group">
           <label data-fr="Service recherché" data-en="Service Needed">Service recherché</label>
           <select name="service">
-            <option data-fr="-- Sélectionner --"          data-en="-- Select --">-- Sélectionner --</option>
-            <option data-fr="Développement d'API"         data-en="API Development">Développement d'API</option>
-            <option data-fr="Cloud"                        data-en="Cloud">Cloud</option>
-            <option data-fr="DevOps"                       data-en="DevOps">DevOps</option>
-            <option data-fr="Intégration"                  data-en="Integration">Intégration</option>
-            <option data-fr="Migration"                    data-en="Migration">Migration</option>
-            <option data-fr="Conseil &amp; Architecture"   data-en="Consulting &amp; Architecture">Conseil &amp; Architecture</option>
+            <option data-fr="-- Sélectionner --" data-en="-- Select --">-- Sélectionner --</option>
+            <option data-fr="Développement d'API" data-en="API Development">Développement d'API</option>
+            <option data-fr="Cloud" data-en="Cloud">Cloud</option>
+            <option data-fr="DevOps" data-en="DevOps">DevOps</option>
+            <option data-fr="Intégration" data-en="Integration">Intégration</option>
+            <option data-fr="Migration" data-en="Migration">Migration</option>
+            <option data-fr="Conseil &amp; Architecture" data-en="Consulting &amp; Architecture">Conseil &amp; Architecture</option>
           </select>
         </div>
         <div class="form-group">
@@ -903,7 +897,7 @@
     <h5 data-fr="Contact" data-en="Contact">Contact</h5>
     <ul>
       <li><a href="mailto:contact@foko.ca">contact@foko.ca</a></li>
-      <li><a href="#">+1 (438) 924-2652</a></li>
+      <li><a href="tel:+14389242652">+1 (438) 924-2652</a></li>
       <li><a href="#">Montréal, QC</a></li>
       <li><a href="#">LinkedIn</a></li>
     </ul>
@@ -915,61 +909,43 @@
 </div>
 
 <script>
-  /* ── LANGUAGE TOGGLE ── */
   let currentLang = 'fr';
 
   function setLang(lang) {
     currentLang = lang;
     document.documentElement.lang = lang;
-
     document.querySelectorAll('.lang-btn').forEach(b => {
       b.classList.toggle('active', b.textContent.trim().toLowerCase() === lang);
     });
-
     document.querySelectorAll('[data-fr]').forEach(el => {
       const txt = el.getAttribute('data-' + lang);
       if (txt !== null) {
-        if (el.tagName === 'INPUT' || el.tagName === 'BUTTON') {
-          el.value = txt;
-        }
+        if (el.tagName === 'INPUT' || el.tagName === 'BUTTON') el.value = txt;
         el.textContent = txt;
       }
     });
-
     document.querySelectorAll('select option[data-fr]').forEach(opt => {
       const txt = opt.getAttribute('data-' + lang);
       if (txt) opt.textContent = txt;
     });
-
     const submitBtn = document.querySelector('.form-submit');
-    if (submitBtn) {
-      submitBtn.textContent = submitBtn.getAttribute('data-' + lang);
-    }
+    if (submitBtn) submitBtn.textContent = submitBtn.getAttribute('data-' + lang);
   }
 
-  /* ── SCROLL REVEAL ── */
   const revealObserver = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.12 });
   document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-  /* ── NAV SCROLL STYLE ── */
   window.addEventListener('scroll', () => {
     document.querySelector('nav').style.background =
       window.scrollY > 60 ? 'rgba(11,17,32,0.97)' : 'rgba(11,17,32,0.85)';
   });
 
-  /* ── CONTACT FORM ── */
+  const EMAILJS_PUBLIC_KEY  = 'rAQJEd8tLLU0dXw7e';
+  const EMAILJS_SERVICE_ID  = 'service_6pu4n0r';
+  const EMAILJS_TEMPLATE_ID = 'template_te28lpn';
 
-  // ╔══════════════════════════════════════════════════════╗
-  // ║  EMAILJS CONFIG — remplace les 3 valeurs ci-dessous ║
-  // ║  après avoir créé ton compte sur emailjs.com         ║
-  // ╚══════════════════════════════════════════════════════╝
-  const EMAILJS_PUBLIC_KEY  = 'rAQJEd8tLLU0dXw7e';   // Account > API Keys
-  const EMAILJS_SERVICE_ID  = 'service_6pu4n0r';   // Email Services > Service ID
-  const EMAILJS_TEMPLATE_ID = 'template_te28lpn';  // Email Templates > Template ID
-
-  // Initialise EmailJS
   (function() {
     var script = document.createElement('script');
     script.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
@@ -983,7 +959,6 @@
     const btn  = form.querySelector('.form-submit');
     const originalText = btn.textContent;
 
-    // Récupère les valeurs
     const firstName = form.querySelector('[name="first_name"]').value.trim();
     const lastName  = form.querySelector('[name="last_name"]').value.trim();
     const email     = form.querySelector('[name="from_email"]').value.trim();
@@ -991,7 +966,6 @@
     const service   = form.querySelector('[name="service"]').value;
     const message   = form.querySelector('[name="message"]').value.trim();
 
-    // État chargement
     btn.textContent = currentLang === 'fr' ? 'Envoi en cours…' : 'Sending…';
     btn.disabled = true;
     btn.style.opacity = '0.75';
