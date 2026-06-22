@@ -722,8 +722,8 @@ window.addEventListener('scroll', () => {
 });
 
 const EMAILJS_PUBLIC_KEY  = 'rAQJEd8tLLU0dXw7e';
-const EMAILJS_SERVICE_ID  = 'service_6pu4n0r';
-const EMAILJS_TEMPLATE_ID = 'template_te28lpn';
+const EMAILJS_SERVICE_ID  = 'service_84el0i3';
+const EMAILJS_TEMPLATE_ID = 'template_8hat1vo';
 (function() {
   var s = document.createElement('script');
   s.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
@@ -750,7 +750,7 @@ async function handleForm(e) {
     company: company || '—',
     service,
     message,
-    to_email: 'contact.aivisionworld@gmail.com'
+    to_email: 'contact@sn-fara.com'
   };
   try {
     await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams);
