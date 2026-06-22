@@ -170,6 +170,23 @@
   .contact-item-text .ci-label{font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;font-weight:600;}
   .contact-item-text .ci-val{font-size:0.88rem;font-weight:600;color:var(--text);}
 
+  /* RÉALISATIONS */
+  #realisations{background:var(--bg2);}
+  .realisations-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:1.8rem;}
+  .project-card{background:var(--card-bg);border:1px solid rgba(13,27,46,0.08);border-radius:16px;overflow:hidden;box-shadow:var(--shadow);transition:transform 0.3s,box-shadow 0.3s;cursor:pointer;text-decoration:none;display:block;color:inherit;}
+  .project-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);}
+  .project-card-img{width:100%;height:190px;object-fit:cover;background:linear-gradient(135deg,#0066CC 0%,#00A896 100%);display:flex;align-items:center;justify-content:center;font-size:3.5rem;position:relative;overflow:hidden;}
+  .project-card-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 50%,rgba(13,27,46,0.35) 100%);}
+  .project-card-img-inner{display:flex;align-items:center;justify-content:center;width:100%;height:100%;flex-direction:column;gap:8px;}
+  .project-card-img-label{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:900;color:#fff;letter-spacing:-0.01em;text-shadow:0 2px 12px rgba(0,0,0,0.3);z-index:1;}
+  .project-card-img-sub{font-family:'DM Sans',sans-serif;font-size:0.75rem;font-weight:500;color:rgba(255,255,255,0.8);letter-spacing:0.1em;text-transform:uppercase;z-index:1;}
+  .project-card-body{padding:1.4rem 1.5rem 1.6rem;}
+  .project-card-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:0.85rem;}
+  .project-card-title{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;margin-bottom:0.5rem;color:var(--text);}
+  .project-card-desc{color:var(--text2);font-size:0.88rem;line-height:1.75;}
+  .project-card-link{display:inline-flex;align-items:center;gap:6px;margin-top:1.1rem;font-size:0.82rem;font-weight:700;color:var(--accent);letter-spacing:0.02em;transition:gap 0.2s;}
+  .project-card:hover .project-card-link{gap:10px;}
+
   /* FOOTER */
   footer{background:var(--text);border-top:1px solid rgba(255,255,255,0.08);padding:3.5rem 5%;display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:3rem;}
   .footer-brand p{color:rgba(255,255,255,0.55);font-size:0.88rem;line-height:1.7;margin-top:1rem;max-width:240px;}
@@ -272,6 +289,7 @@
     <li><a href="#approach" data-fr="Approche" data-en="Approach">Approche</a></li>
     <li><a href="#why" data-fr="Pourquoi Nous" data-en="Why Us">Pourquoi Nous</a></li>
     <li><a href="#sectors" data-fr="Secteurs" data-en="Sectors">Secteurs</a></li>
+    <li><a href="#realisations" data-fr="Réalisations" data-en="Portfolio">Réalisations</a></li>
     <li><a href="#contact" data-fr="Contact" data-en="Contact">Contact</a></li>
   </ul>
   <div style="display:flex;align-items:center;gap:12px;">
@@ -292,6 +310,7 @@
   <a href="#approach" onclick="closeMenu()" data-fr="Approche" data-en="Approach">Approche</a>
   <a href="#why" onclick="closeMenu()" data-fr="Pourquoi Nous" data-en="Why Us">Pourquoi Nous</a>
   <a href="#sectors" onclick="closeMenu()" data-fr="Secteurs" data-en="Sectors">Secteurs</a>
+  <a href="#realisations" onclick="closeMenu()" data-fr="Réalisations" data-en="Portfolio">Réalisations</a>
   <a href="#contact" onclick="closeMenu()" data-fr="Contact" data-en="Contact">Contact</a>
   <a href="tel:+14389242652" class="mobile-cta" onclick="closeMenu()">📞 +1 438 924 2652</a>
 </div>
@@ -439,6 +458,40 @@
     <div class="sector-card reveal"><span class="sector-icon">🎓</span><div class="sector-name" data-fr="Éducation" data-en="Education">Éducation</div></div>
     <div class="sector-card reveal"><span class="sector-icon">🏛️</span><div class="sector-name" data-fr="Secteur Public" data-en="Public Sector">Secteur Public</div></div>
     <div class="sector-card reveal"><span class="sector-icon">🚗</span><div class="sector-name" data-fr="Transport &amp; Logistique" data-en="Transport &amp; Logistics">Transport &amp; Logistique</div></div>
+  </div>
+</section>
+
+<!-- RÉALISATIONS -->
+<section id="realisations">
+  <div class="section-header reveal">
+    <span class="section-label" data-fr="Portfolio" data-en="Portfolio">Portfolio</span>
+    <h2 class="section-title" data-fr="Nos Réalisations" data-en="Our Projects">Nos Réalisations</h2>
+    <p class="section-sub" data-fr="Des solutions concrètes livrées pour nos clients — de la conception au déploiement en production." data-en="Concrete solutions delivered for our clients — from design to production deployment.">Des solutions concrètes livrées pour nos clients — de la conception au déploiement en production.</p>
+  </div>
+  <div class="realisations-grid">
+
+    <!-- G12 Élection -->
+    <a href="https://election-g12.onrender.com/" target="_blank" rel="noopener noreferrer" class="project-card reveal">
+      <div class="project-card-img" style="background:linear-gradient(135deg,#1B4F9A 0%,#0D3A7A 50%,#00A896 100%);">
+        <div class="project-card-img-inner">
+          <span style="font-size:2.8rem;z-index:1;">🗳️</span>
+          <span class="project-card-img-label">G12 Élection</span>
+          <span class="project-card-img-sub">Sport Santé</span>
+        </div>
+      </div>
+      <div class="project-card-body">
+        <div class="project-card-tags">
+          <span class="tag">React 18</span>
+          <span class="tag">Spring Boot 3</span>
+          <span class="tag">PostgreSQL</span>
+          <span class="tag">Supabase</span>
+        </div>
+        <h3 class="project-card-title" data-fr="Plateforme électorale G12 Sport Santé" data-en="G12 Sport Santé Electoral Platform">Plateforme électorale G12 Sport Santé</h3>
+        <p class="project-card-desc" data-fr="Application web bilingue de gestion d'élections : candidatures, vote sécurisé par code secret, résultats en temps réel, panel admin, export PDF et détection d'égalité." data-en="Bilingual web application for election management: candidacy submissions, secret-code voting, real-time results, admin panel, PDF export and tie detection.">Application web bilingue de gestion d'élections : candidatures, vote sécurisé par code secret, résultats en temps réel, panel admin, export PDF et détection d'égalité.</p>
+        <span class="project-card-link" data-fr="Voir le site →" data-en="View site →">Voir le site →</span>
+      </div>
+    </a>
+
   </div>
 </section>
 
